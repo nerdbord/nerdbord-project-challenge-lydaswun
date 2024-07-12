@@ -1,0 +1,52 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	gap: 3rem;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+
+.descbox {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.desc {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.title {
+	font-size: 1.5rem;
+}
+
+.subtitle {
+	color: #666666;
+}
+
+.postdata {
+	display: flex;
+	gap: 2rem;
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.buttonbox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+
+.social {
+	display: flex;
+	gap: 1rem;
+}
