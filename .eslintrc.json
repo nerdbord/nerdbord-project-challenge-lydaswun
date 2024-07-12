@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/eslintrc.json",
-	"plugins": ["@typescript-eslint", "import"],
+	"plugins": ["@typescript-eslint", "import", "react-hooks"],
 	"parserOptions": {
 		"project": "tsconfig.json"
 	},
@@ -13,6 +13,8 @@
 		"prettier"
 	],
 	"rules": {
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
 		// sort imports
 		"import/order": "error",
 
