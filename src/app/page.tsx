@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
-import Hero from "@/components/Hero/Hero";
-import Popular from "@/components/Popular/Popular";
+import { Hero } from "@/components/Hero/Hero";
+import { Popular } from "@/components/Popular/Popular";
 import { PostGallery } from "@/components/PostsGallery/PostsGallery";
 import popularImage from "@/assets/popular.png";
 import { ContactUs } from "@/components/ContactUs/ContactUs";
