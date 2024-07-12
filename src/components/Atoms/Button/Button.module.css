@@ -1,29 +1,29 @@
 .button {
-  color: #333;
-  padding: 0.8rem 1.2rem;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 8px;
+	color: #333;
+	padding: 0.8rem 1.2rem;
+	cursor: pointer;
+	transition: opacity 0.3s ease;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	border-radius: 8px;
 }
 
 .button:hover {
-  opacity: 0.8;
+	opacity: 0.8;
 }
 
 .primary {
-  background-color: #1a1a1a;
-  color: #666666;
-  border: 1px solid #666666;
+	background-color: #1a1a1a;
+	color: #666666;
+	border: 1px solid #666666;
 }
 
 .secondary {
-  background-color: #f1c40f;
-  color: #333;
-  border: none;
-  outline: none;
+	background-color: #f1c40f;
+	color: #333;
+	border: none;
+	outline: none;
 }
