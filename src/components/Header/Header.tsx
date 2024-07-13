@@ -16,6 +16,14 @@ export const Header = () => {
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+	const scrollToSection = (event: React.MouseEvent<HTMLAnchorElement>, id: string): void => {
+		event.preventDefault();
+		const section = document.getElementById(id);
+		if (section) {
+			section.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.logobox}>
@@ -23,10 +31,15 @@ export const Header = () => {
 				BlogApp
 			</div>
 			<nav className={styles.nav}>
-				{/*   <a href="">Home</a>
-        <a href="">News</a>
-        <a href="">Podcasts</a>
-        <a href="">Resources</a> */}
+				<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
+					Home
+				</a>
+				<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
+					Popular
+				</a>
+				<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
+					All Posts
+				</a>
 			</nav>
 
 			<Button text="Subscribe" onClick={openModal} variant="secondary" />
