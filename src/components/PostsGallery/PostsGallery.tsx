@@ -35,7 +35,7 @@ export const PostGallery: React.FC<PostGalleryProps> = ({ posts, postsPerPage = 
 	};
 
 	return (
-		<div className={styles.wrapper}>
+		<div id="allposts" className={styles.wrapper}>
 			<div className={styles.gallery}>
 				{currentPosts.map((post) => (
 					<Post key={post.id} {...post} />

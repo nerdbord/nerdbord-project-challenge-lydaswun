@@ -31,7 +31,7 @@ export const Popular: React.FC<PopularProps> = ({
 	shares = 30,
 }) => {
 	return (
-		<article className={styles.wrapper}>
+		<div id="popular" className={styles.wrapper}>
 			<Image src={imageSrc} width={400} height={427} alt={imageAlt} className={styles.image} />
 			<div className={styles.desc}>
 				<div className={styles.descbox}>
@@ -68,6 +68,6 @@ export const Popular: React.FC<PopularProps> = ({
 					/>
 				</div>
 			</div>
-		</article>
+		</div>
 	);
 };
