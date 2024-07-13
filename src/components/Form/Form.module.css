@@ -10,6 +10,12 @@
 	font-size: 2rem;
 }
 
+.info {
+	text-align: center;
+	line-height: 1.6;
+	font-size: 1.2rem;
+}
+
 .form {
 	display: flex;
 	align-items: center;
@@ -20,7 +26,28 @@
 .form input {
 	padding: 0.8rem;
 	margin: 0.5rem 0;
+	color: white;
 	border: 1px solid #2a2a2a;
 	background-color: inherit;
 	width: 300px;
+	position: relative;
+}
+
+.error {
+	color: red;
+	top: 215px;
+	left: 90px;
+	position: absolute;
+}
+
+.thankYou {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+.thankYou h1,
+.thankYou h2 {
+	text-align: center;
 }

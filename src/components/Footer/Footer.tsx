@@ -60,11 +60,8 @@ export const Footer = () => {
 					</ul>
 				</div>
 				<div className={styles.item}>
-					<span className={styles.title}> Resources</span>
+					<span className={styles.title}>Newsletter</span>
 					<ul>
-						<Button text="Subscribe" variant="primary" icon={Arrow} iconPosition="right" />
-						<Button text="Subscribe" variant="primary" icon={Arrow} iconPosition="right" />
-						<Button text="Subscribe" variant="primary" icon={Arrow} iconPosition="right" />
 						<Button text="Subscribe" variant="primary" icon={Arrow} iconPosition="right" />
 					</ul>
 				</div>

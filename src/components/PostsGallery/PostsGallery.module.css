@@ -3,9 +3,9 @@
 }
 
 .gallery {
+	margin-top: 3rem;
 	display: grid;
 	grid-template-columns: repeat(3, 2fr);
-	/* min-height: 648px; */
 	gap: 3rem;
 }
 
