@@ -61,6 +61,12 @@ export const Post = defineType({
       initialValue: () => new Date().toISOString(),
     }),
     defineField({
+      name: 'popular',
+      type: 'boolean',
+      title: 'Popular post',
+      description: 'Show this post on the popular posts section',
+    }),
+    defineField({
       name: 'preview',
       type: 'text',
       title: 'Preview of the post',
@@ -78,11 +84,13 @@ export const Post = defineType({
       author: 'author.name',
       date: 'publishedAt',
       media: 'mainImage',
+      popular: 'popular',
     },
-    prepare({title, media, author, date}) {
+    prepare({title, media, author, date, popular}) {
       const subtitles = [
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
+        popular && ' 🔥',
       ].filter(Boolean)
 
       return {title, media, subtitle: subtitles.join(' ')}

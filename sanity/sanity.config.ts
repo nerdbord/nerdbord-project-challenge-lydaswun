@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'NB Contract Blog',
 
-  projectId: 'dr96nfh9',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],

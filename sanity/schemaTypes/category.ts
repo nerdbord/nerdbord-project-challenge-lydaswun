@@ -21,6 +21,7 @@ export const Category = defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
+      readOnly: ({value, document}) => (value ? true : false),
     }),
   ],
 })
