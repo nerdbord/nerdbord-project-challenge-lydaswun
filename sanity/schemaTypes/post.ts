@@ -47,13 +47,13 @@ export const Post = defineType({
       options: {hotspot: true},
       validation: (rule) => rule.required(),
     }),
-    {
+    defineField({
       name: 'categories',
       title: 'Categories of the post',
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}],
       description: 'Select categories for this post',
-    },
+    }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
