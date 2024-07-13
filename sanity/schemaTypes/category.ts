@@ -11,5 +11,16 @@ export const Category = defineType({
       type: 'string',
       description: 'Name of the category',
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description: 'Press generate to generate the slug automatically, do not manually input slug',
+      options: {
+        source: 'name',
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
 })
