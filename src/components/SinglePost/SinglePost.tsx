@@ -68,7 +68,9 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 					</div>
 				</div>
 			</div>
-			<PortableText value={content} />
+			<div className={styles.postContent}>
+				<PortableText value={content} />
+			</div>
 		</div>
 	);
 };
