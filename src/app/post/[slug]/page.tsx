@@ -5,5 +5,9 @@ import { getPostBySlug } from "@/api/actions";
 export default async function PostPage({ params }: { params: { slug: string } }) {
 	const post = await getPostBySlug(params.slug);
 
-	return <div className={styles.container}>{post && <SinglePost post={post} />}</div>;
+	return (
+		<div className={styles.container}>
+			{post ? <SinglePost post={post} /> : <div>Post not found</div>}
+		</div>
+	);
 }
