@@ -23,7 +23,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 	const postPublishedAt = formatDate(publishedAt);
 
 	return (
-		<div className={styles.container}>
+		<>
 			<div className={styles.header}>
 				<div className={styles.imagebox}>
 					<Image src={imgURL || noPicture} alt={mainImage.alt} width={500} height={300} />
@@ -71,6 +71,6 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 			<div className={styles.postContent}>
 				<PortableText value={content} />
 			</div>
-		</div>
+		</>
 	);
 };

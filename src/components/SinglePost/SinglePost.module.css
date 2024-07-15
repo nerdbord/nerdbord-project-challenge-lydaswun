@@ -62,5 +62,5 @@
 }
 
 .postContent {
-	@apply prose prose-lg prose-invert;
+	@apply prose prose-lg prose-invert mx-auto max-w-[1200px];
 }
