@@ -28,7 +28,7 @@ export const Header = () => {
 		<header className={styles.header}>
 			<div className={styles.logobox}>
 				<Logo />
-				Skurvival
+				TechBlog
 			</div>
 			<nav className={styles.nav}>
 				<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
