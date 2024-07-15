@@ -31,17 +31,19 @@ export const PostGallery: React.FC<PostGalleryProps> = ({ posts, postsPerPage = 
 					<Post key={post._id} {...post} />
 				))}
 			</div>
-			<div className={styles.pagination}>
-				<button onClick={handlePreviousPage} disabled={currentPage === 1}>
-					<RiArrowLeftSLine />
-				</button>
-				<span>
-					{currentPage} / {totalPages}
-				</span>
-				<button onClick={handleNextPage} disabled={currentPage === totalPages}>
-					<RiArrowRightSLine />
-				</button>
-			</div>
+			{totalPages > 1 && (
+				<div className={styles.pagination}>
+					<button onClick={handlePreviousPage} disabled={currentPage === 1}>
+						<RiArrowLeftSLine />
+					</button>
+					<span>
+						{currentPage} / {totalPages}
+					</span>
+					<button onClick={handleNextPage} disabled={currentPage === totalPages}>
+						<RiArrowRightSLine />
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };
