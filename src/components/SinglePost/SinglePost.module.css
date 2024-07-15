@@ -1,12 +1,19 @@
 .header {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	gap: 2rem;
 	max-width: 1200px;
 	position: relative;
 	margin: 0 auto;
 	padding: 1rem 0;
+	width: 100%;
+}
+
+.image {
+	height: 500px;
+	object-fit: cover;
+	width: 100%;
 }
 
 .titlebox {

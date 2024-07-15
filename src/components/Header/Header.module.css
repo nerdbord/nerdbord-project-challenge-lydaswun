@@ -16,5 +16,85 @@
 
 .nav {
 	display: flex;
+	align-items: center;
+	gap: 6rem;
+	overflow: hidden; /* Add this to handle the hidden state */
+}
+
+.nav svg {
+	margin-right: 5px;
+}
+
+.links {
+	display: flex;
 	gap: 2rem;
+}
+
+.hamburger {
+	display: none;
+	cursor: pointer;
+}
+
+.hamburger svg {
+	width: 30px;
+	height: 30px;
+}
+
+.mobileSubscribe {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem 1rem;
+		max-width: 1200px;
+		position: relative;
+		margin: 0 auto;
+	}
+	.nav {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #1a1a1a;
+		z-index: 3;
+		gap: 3rem;
+		padding: 4rem;
+		border-bottom-left-radius: 30px;
+		border-bottom-right-radius: 30px;
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		font-size: 1.2rem;
+	}
+
+	.logobox {
+		font-size: 2rem;
+	}
+
+	.navOpen {
+		display: flex;
+	}
+
+	.hamburger {
+		display: block;
+		z-index: 4;
+	}
+
+	.mobileSubscribe {
+		display: block;
+		margin-top: 1rem;
+	}
+
+	.header > .Button {
+		display: none;
+	}
 }

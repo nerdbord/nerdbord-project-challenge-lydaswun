@@ -25,13 +25,15 @@ export const Popular: React.FC<PopularPostType> = ({
 
 	return (
 		<div id="popular" className={styles.wrapper}>
-			<Image
-				src={popularImage}
-				width={400}
-				height={427}
-				alt={mainImage.alt}
-				className={styles.image}
-			/>
+			<Link href={`/post/${slug}`}>
+				<Image
+					src={popularImage}
+					width={400}
+					height={427}
+					alt={mainImage.alt}
+					className={styles.image}
+				/>
+			</Link>
 			<div className={styles.desc}>
 				<Link href={`/post/${slug}`} className={styles.postLink}>
 					<div className={styles.descbox}>

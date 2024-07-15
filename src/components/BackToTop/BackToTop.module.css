@@ -44,3 +44,10 @@
 		opacity: 1;
 	}
 }
+
+@media (max-width: 768px) {
+	.backToTop {
+		bottom: 2rem;
+		right: 3rem;
+	}
+}

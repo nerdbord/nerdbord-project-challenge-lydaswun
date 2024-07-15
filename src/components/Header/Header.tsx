@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { FaArrowLeft, FaBars, FaTimes } from "react-icons/fa";
 import { Button } from "../Atoms/Button/Button";
 import { Modal } from "../Atoms/Modal/Modal";
 import { Form } from "../Form/Form";
@@ -9,6 +10,7 @@ import { Logo } from "@/assets/Logo";
 
 export const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const pathname = usePathname();
 
 	const openModal = () => {
@@ -19,11 +21,16 @@ export const Header = () => {
 		setIsModalOpen(false);
 	};
 
+	const toggleMenu = () => {
+		setIsMenuOpen(!isMenuOpen);
+	};
+
 	const scrollToSection = (event: React.MouseEvent<HTMLAnchorElement>, id: string): void => {
 		event.preventDefault();
 		const section = document.getElementById(id);
 		if (section) {
 			section.scrollIntoView({ behavior: "smooth" });
+			setIsMenuOpen(false);
 		}
 	};
 
@@ -36,23 +43,34 @@ export const Header = () => {
 				TechBlog
 			</div>
 			{isHomePage ? (
-				<nav className={styles.nav}>
-					<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
-						Home
-					</a>
-					<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
-						Popular
-					</a>
-					<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
-						All Posts
-					</a>
-				</nav>
+				<>
+					<nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}>
+						<div className={styles.links}>
+							<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
+								Home
+							</a>
+							<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
+								Popular
+							</a>
+							<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
+								All Posts
+							</a>
+						</div>
+
+						<Button text="Subscribe" onClick={openModal} variant="secondary" />
+					</nav>
+					<div className={styles.hamburger} onClick={toggleMenu}>
+						{isMenuOpen ? <FaTimes /> : <FaBars />}
+					</div>
+				</>
 			) : (
 				<nav className={styles.nav}>
-					<a href="/">Home</a>
+					<a href="/">
+						<FaArrowLeft /> Back to main
+					</a>
 				</nav>
 			)}
-			<Button text="Subscribe" onClick={openModal} variant="secondary" />
+
 			<Modal isOpen={isModalOpen} onRequestClose={closeModal}>
 				<Form />
 			</Modal>

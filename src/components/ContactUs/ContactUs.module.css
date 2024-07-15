@@ -82,3 +82,50 @@
 	border-radius: 8px;
 	background-color: #2a2a2a;
 }
+
+@media (max-width: 768px) {
+	.wrapper {
+		padding-bottom: 3rem;
+		gap: 1.5rem;
+	}
+
+	.infobox {
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+		text-align: center;
+	}
+
+	.descbox h2 {
+		font-size: 32px;
+	}
+
+	.descbox {
+		align-items: center;
+		text-align: center;
+		gap: 0.5rem;
+	}
+
+	.advantages {
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.5rem;
+	}
+
+	.advantages svg {
+		height: 24px;
+		width: 24px;
+	}
+
+	.title {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.item {
+		padding: 0.5rem;
+		gap: 0.5rem;
+	}
+}
