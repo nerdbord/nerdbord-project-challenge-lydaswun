@@ -24,7 +24,7 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slu
     content
   }`;
 
-export const ALL_POSTS_QUERY = groq`*[_type == "post"] | order(publishedAt desc){
+export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == null] | order(publishedAt desc){
     _id,
     title,
     "slug": slug.current,

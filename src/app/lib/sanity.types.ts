@@ -1,4 +1,5 @@
 import { type SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { type PortableTextBlock } from "@portabletext/types";
 
 export type PostCardType = {
 	_id: string;
@@ -17,9 +18,7 @@ export type PopularPostType = PostCardType & {
 export type PostDetailedType = PostCardType & {
 	author: AuthorType;
 	publishedAt: Date;
-	preview: string;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	content: any;
+	content: PortableTextBlock;
 };
 
 export type AuthorType = {
