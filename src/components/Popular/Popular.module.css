@@ -50,3 +50,14 @@
 	display: flex;
 	gap: 1rem;
 }
+
+.categories {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.postLink {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}

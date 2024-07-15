@@ -5,11 +5,12 @@
 	align-items: flex-start;
 	margin: 0 auto;
 	gap: 0.5rem;
-	height: 300px;
+	min-height: 300px;
 }
 
 .image {
 	height: 200px;
+	object-fit: cover;
 }
 
 .title {
@@ -31,4 +32,16 @@
 .social {
 	display: flex;
 	gap: 1rem;
+}
+
+.categories {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.postLink {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	gap: 0.5rem;
 }

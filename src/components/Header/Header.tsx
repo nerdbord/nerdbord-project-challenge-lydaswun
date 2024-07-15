@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "../Atoms/Button/Button";
 import { Modal } from "../Atoms/Modal/Modal";
 import { Form } from "../Form/Form";
@@ -8,6 +9,7 @@ import { Logo } from "@/assets/Logo";
 
 export const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const pathname = usePathname();
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -16,6 +18,7 @@ export const Header = () => {
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+
 	const scrollToSection = (event: React.MouseEvent<HTMLAnchorElement>, id: string): void => {
 		event.preventDefault();
 		const section = document.getElementById(id);
@@ -24,24 +27,31 @@ export const Header = () => {
 		}
 	};
 
+	const isHomePage = pathname === "/";
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.logobox}>
 				<Logo />
 				TechBlog
 			</div>
-			<nav className={styles.nav}>
-				<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
-					Home
-				</a>
-				<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
-					Popular
-				</a>
-				<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
-					All Posts
-				</a>
-			</nav>
-
+			{isHomePage ? (
+				<nav className={styles.nav}>
+					<a href="#home" onClick={(event) => scrollToSection(event, "home")}>
+						Home
+					</a>
+					<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
+						Popular
+					</a>
+					<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
+						All Posts
+					</a>
+				</nav>
+			) : (
+				<nav className={styles.nav}>
+					<a href="/">Home</a>
+				</nav>
+			)}
 			<Button text="Subscribe" onClick={openModal} variant="secondary" />
 			<Modal isOpen={isModalOpen} onRequestClose={closeModal}>
 				<Form />

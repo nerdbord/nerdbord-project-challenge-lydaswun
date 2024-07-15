@@ -1,22 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { type StaticImageData } from "next/image";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { Post } from "../Post/Post";
 import styles from "./PostsGallery.module.css";
-
-interface PostData {
-	id: number;
-	imageSrc: StaticImageData;
-	imageAlt: string;
-	title: string;
-	category: string;
-	likes: number;
-	shares: number;
-}
+import { type PostCardType } from "@/app/lib/sanity.types";
 
 interface PostGalleryProps {
-	posts: PostData[];
+	posts: PostCardType[];
 	postsPerPage?: number;
 }
 
@@ -38,20 +28,22 @@ export const PostGallery: React.FC<PostGalleryProps> = ({ posts, postsPerPage = 
 		<div id="allposts" className={styles.wrapper}>
 			<div className={styles.gallery}>
 				{currentPosts.map((post) => (
-					<Post key={post.id} {...post} />
+					<Post key={post._id} {...post} />
 				))}
 			</div>
-			<div className={styles.pagination}>
-				<button onClick={handlePreviousPage} disabled={currentPage === 1}>
-					<RiArrowLeftSLine />
-				</button>
-				<span>
-					{currentPage} / {totalPages}
-				</span>
-				<button onClick={handleNextPage} disabled={currentPage === totalPages}>
-					<RiArrowRightSLine />
-				</button>
-			</div>
+			{totalPages > 1 && (
+				<div className={styles.pagination}>
+					<button onClick={handlePreviousPage} disabled={currentPage === 1}>
+						<RiArrowLeftSLine />
+					</button>
+					<span>
+						{currentPage} / {totalPages}
+					</span>
+					<button onClick={handleNextPage} disabled={currentPage === totalPages}>
+						<RiArrowRightSLine />
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };

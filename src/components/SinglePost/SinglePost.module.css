@@ -54,3 +54,13 @@
 
 	text-align: justify;
 }
+
+.categories {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+.postContent {
+	@apply prose prose-lg prose-invert mx-auto max-w-[1200px];
+}
