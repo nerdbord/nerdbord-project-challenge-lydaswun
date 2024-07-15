@@ -1,3 +1,3 @@
-﻿export * from "./getPopularPost";
-export * from "./getAllPosts";
-export * from "./getPostBySlug";
+﻿export { getPopularPost } from "./getPopularPost";
+export { getAllPosts } from "./getAllPosts";
+export { getPostBySlug } from "./getPostBySlug";
