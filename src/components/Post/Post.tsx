@@ -12,21 +12,22 @@ import { Button } from "@/components/Atoms/Button/Button";
 import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
 
 export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slug }) => {
-	const imageURL = urlForImage(mainImage.image).url();
+	const imageURL = mainImage?.asset?._ref ? urlForImage(mainImage).url() : "";
 
 	return (
 		<article className={styles.wrapper}>
 			<Link href={`/post/${slug}`} className={styles.postLink}>
-				<Image
-					src={imageURL}
-					width={400}
-					height={200}
-					alt={mainImage.alt}
-					className={styles.image}
-				/>
-
+				{imageURL && (
+					<Image
+						src={imageURL}
+						width={400}
+						height={200}
+						alt={mainImage.alt}
+						className={styles.image}
+					/>
+				)}
 				<p className={styles.title}>{title}</p>
-				{categories.length > 0 && (
+				{categories?.length > 0 && (
 					<div className={styles.categories}>
 						{categories.map((category) => (
 							<p key={category._id} className={styles.subtitle}>
@@ -36,7 +37,6 @@ export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slu
 					</div>
 				)}
 			</Link>
-			{/* TODO: implement likes and shares logic */}
 			<div className={styles.buttonbox}>
 				<div className={styles.social}>
 					<StatsDisplay count={50} icon={IoIosHeartEmpty} label={""} />

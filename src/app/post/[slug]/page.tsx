@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import { SinglePost } from "@/components/SinglePost/SinglePost";
-import { getPostBySlug } from "@/api/actions";
+import { getPostBySlug } from "@/api/actions/getPostBySlug";
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
 	const post = await getPostBySlug(params.slug);

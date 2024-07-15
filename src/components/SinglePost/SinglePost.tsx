@@ -9,7 +9,6 @@ import styles from "./SinglePost.module.css";
 import Arrow from "@/assets/Arrow";
 import noPicture from "@/assets/nopicture.png";
 import { type PostDetailedType } from "@/app/lib/sanity.types";
-import { urlForImage } from "@/app/lib/sanity.image";
 import { formatDate } from "@/utils/formatDate";
 
 type PostDetailProps = {
@@ -19,7 +18,7 @@ type PostDetailProps = {
 export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 	const { author, categories, content, mainImage, publishedAt, title } = post;
 
-	const imgURL = urlForImage(mainImage.image).url();
+	const imgURL = mainImage?.image || noPicture;
 	const postPublishedAt = formatDate(publishedAt);
 
 	return (
@@ -27,8 +26,8 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 			<div className={styles.header}>
 				<div className={styles.imagebox}>
 					<Image
-						src={imgURL || noPicture}
-						alt={mainImage.alt}
+						src={imgURL}
+						alt={mainImage?.alt || "No image available"}
 						width={500}
 						height={500}
 						className={styles.image}
@@ -39,7 +38,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 					<ul className={styles.postdata}>
 						<li className={styles.item}>
 							<p>Category</p>
-							{categories.length > 0 && (
+							{categories?.length > 0 && (
 								<div className={styles.categories}>
 									{categories.map((category) => (
 										<p key={category._id} className={styles.subtitle}>
@@ -55,7 +54,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 						</li>
 						<li className={styles.item}>
 							<p>Author</p>
-							<p className={styles.subtitle}>{author.name}</p>
+							<p className={styles.subtitle}>{author?.name || "Unknown author"}</p>
 						</li>
 					</ul>
 					<div className={styles.buttonbox}>
