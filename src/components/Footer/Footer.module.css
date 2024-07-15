@@ -68,3 +68,31 @@
 	gap: 0.5rem;
 	color: #666666;
 }
+
+@media (max-width: 768px) {
+	.footer {
+		padding: 2rem;
+	}
+
+	.topbar {
+		display: grid;
+		grid-template-columns: 2fr 2fr;
+		gap: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	.bottombar {
+		flex-direction: column;
+		gap: 1rem;
+		padding-top: 1rem;
+		text-align: center;
+	}
+
+	.social {
+		justify-content: center;
+	}
+
+	.terms {
+		justify-content: center;
+	}
+}

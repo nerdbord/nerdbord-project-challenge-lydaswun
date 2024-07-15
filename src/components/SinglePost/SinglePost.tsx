@@ -26,7 +26,13 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 		<>
 			<div className={styles.header}>
 				<div className={styles.imagebox}>
-					<Image src={imgURL || noPicture} alt={mainImage.alt} width={500} height={300} />
+					<Image
+						src={imgURL || noPicture}
+						alt={mainImage.alt}
+						width={500}
+						height={500}
+						className={styles.image}
+					/>
 				</div>
 				<div className={styles.titlebox}>
 					<h1 className={styles.title}>{title}</h1>
