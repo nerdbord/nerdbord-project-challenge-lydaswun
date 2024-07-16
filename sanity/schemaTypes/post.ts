@@ -77,6 +77,18 @@ export const Post = defineType({
       title: 'Full content of the post',
       of: [{type: 'block'}],
     }),
+    defineField({
+      name: 'likes',
+      type: 'number',
+      readOnly: true,
+      initialValue: () => 0,
+    }),
+    defineField({
+      name: 'visitors',
+      type: 'number',
+      readOnly: true,
+      initialValue: () => 0,
+    }),
   ],
   preview: {
     select: {

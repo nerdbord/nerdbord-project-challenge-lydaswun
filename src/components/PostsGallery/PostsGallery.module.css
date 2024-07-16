@@ -17,6 +17,9 @@
 }
 
 .pagination button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #fff;
 	background-color: inherit;
 	border: 1px solid #666666;

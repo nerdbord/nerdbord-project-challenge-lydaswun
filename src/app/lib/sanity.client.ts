@@ -8,6 +8,7 @@ export const sanityClient = createClient({
 	apiVersion: "2022-03-07",
 	useCdn: false,
 	perspective: "previewDrafts",
+	token: process.env.SANITY_API_TOKEN,
 });
 
 export async function sanityFetch<QueryResponse>({

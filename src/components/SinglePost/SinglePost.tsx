@@ -1,23 +1,19 @@
-"use client";
 import React from "react";
 import Image from "next/image";
-import { IoIosHeartEmpty, IoMdPaperPlane } from "react-icons/io";
 import { PortableText } from "next-sanity";
-import { Button } from "../Atoms/Button/Button";
-import { StatsDisplay } from "../Atoms/Stats/Stats";
 import styles from "./SinglePost.module.css";
-import Arrow from "@/assets/Arrow";
-import noPicture from "@/assets/nopicture.png";
+import nopicture from "@/assets/nopicture.png";
 import { type PostDetailedType } from "@/app/lib/sanity.types";
 import { urlForImage } from "@/app/lib/sanity.image";
 import { formatDate } from "@/utils/formatDate";
+import { SocialStats } from "@/components/SocialStats/SocialStats";
 
 type PostDetailProps = {
 	post: PostDetailedType;
 };
 
 export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
-	const { author, categories, content, mainImage, publishedAt, title } = post;
+	const { author, categories, content, mainImage, publishedAt, title, likes, _id, visitors } = post;
 
 	const imgURL = urlForImage(mainImage.image).url();
 	const postPublishedAt = formatDate(publishedAt);
@@ -27,7 +23,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 			<div className={styles.header}>
 				<div className={styles.imagebox}>
 					<Image
-						src={imgURL || noPicture}
+						src={imgURL || nopicture}
 						alt={mainImage.alt}
 						width={500}
 						height={500}
@@ -59,18 +55,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 						</li>
 					</ul>
 					<div className={styles.buttonbox}>
-						<div className={styles.social}>
-							<StatsDisplay count={20} icon={IoIosHeartEmpty} label={""} />
-							<StatsDisplay count={50} icon={IoMdPaperPlane} label={""} />
-						</div>
-						<Button
-							text="Like"
-							onClick={() => alert("Liked!")}
-							variant="primary"
-							icon={Arrow}
-							iconPosition="right"
-							className={styles.button}
-						/>
+						<SocialStats likes={likes} visitors={visitors} postId={_id} />
 					</div>
 				</div>
 			</div>
