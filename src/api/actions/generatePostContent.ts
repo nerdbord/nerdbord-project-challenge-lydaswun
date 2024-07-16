@@ -6,7 +6,7 @@
 import axios from "axios";
 import { getLatestPost } from "@/api/actions/getLatestPost";
 
-const GPT_API_URL = "https://api.openai.com/v1/chat/completions";
+const GPT_API_URL = "https://training.nerdbord.io/api/v1/openai/chat/completions";
 const GPT_API_KEY = process.env.GPT_API_KEY;
 
 const generateTitle = async (latestPostTitle: string) => {
@@ -22,7 +22,7 @@ const generateTitle = async (latestPostTitle: string) => {
 					},
 					{
 						role: "user",
-						content: `Oto tytuł ostatniego posta: "${latestPostTitle}". Wygeneruj nowy, humorystyczny tytuł postu na blogu o przetrwaniu w Polsce, ale jakiś inny temat nie związany z kurwa PKP. napisz czysty output`,
+						content: `Oto tytuł ostatniego posta: "${latestPostTitle}". Wygeneruj nowy, humorystyczny tytuł postu na blogu w takim wulgarnym kurwa stylu o przetrwaniu w Polsce, ale jakiś inny temat. napisz czysty output`,
 					},
 				],
 			},
@@ -58,7 +58,9 @@ const generateContent = async (title: string, latestPostContent: string) => {
 					},
 					{
 						role: "user",
-						content: `Oto treść ostatniego posta: "${latestPostContent}". Wygeneruj nowy, humorystyczny post na blogu o przetrwaniu w Polsce na temat: "${title}".`,
+						content: `Oto treść ostatniego posta: "${latestPostContent}".
+
+Wygeneruj nowy, humorystyczny post w takim wulgarnym jebanym stylu na blogu o przetrwaniu w Polsce na temat: "${title}".`,
 					},
 				],
 			},
