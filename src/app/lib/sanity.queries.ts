@@ -56,5 +56,6 @@ export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
     },
     preview,
     publishedAt,
-    popular
+    popular,
+    likes
   }`;

@@ -7,6 +7,7 @@ export type PostCardType = {
 	slug: string;
 	mainImage: ImageType;
 	categories: CategoryType[];
+	likes: number;
 };
 
 export type PopularPostType = PostCardType & {
