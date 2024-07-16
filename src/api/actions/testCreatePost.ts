@@ -5,6 +5,7 @@ import { getAuthors } from "@/api/actions/getAuthors";
 import { getCategories } from "@/api/actions/getCategories";
 import { uploadImage } from "@/api/actions/uploadImage";
 import { sanityClient } from "@/app/lib/sanity.client";
+import { generatePostContent } from "@/api/actions/generatePostContent";
 
 export async function createPost() {
 	try {
@@ -24,11 +25,12 @@ export async function createPost() {
 
 		console.log("Uploaded Image Asset:", imageAsset);
 
-		const uniqueSlug = `generated-post-${uuidv4()}`; // to jest tak na odpierdol zrobione, bo potrzebowałęm żeby coś inikalnego było do testów, otem mozna tu zrobić cokolwiek innego co gpt będzie wymyślał i jakimś regexerm oddzielał słowa "-". a nawet nie regexem przecież tylko joinem
+		const { title, content } = await generatePostContent();
+		const uniqueSlug = `generated-post-${uuidv4()}`;
 
 		const newPost = {
 			_type: "post",
-			title: "Ania piwerko",
+			title,
 			slug: {
 				_type: "slug",
 				current: uniqueSlug,
@@ -54,15 +56,19 @@ export async function createPost() {
 			content: [
 				{
 					_type: "block",
+					_key: uuidv4(),
 					children: [
 						{
 							_type: "span",
-							text: "yoooooooooooo",
+							_key: uuidv4(),
+							text: content,
 						},
 					],
 				},
 			],
 		};
+
+		console.log("Created Post:", JSON.stringify(newPost, null, 2));
 
 		const result = await sanityClient.create(newPost);
 		return result;
