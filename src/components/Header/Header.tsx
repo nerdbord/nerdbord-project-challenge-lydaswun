@@ -64,10 +64,11 @@ export const Header = () => {
 					</div>
 				</>
 			) : (
-				<nav className={styles.nav}>
+				<nav className={styles.postnav}>
 					<a href="/">
 						<FaArrowLeft /> Back to main
 					</a>
+					<Button text="Subscribe" onClick={openModal} variant="secondary" />
 				</nav>
 			)}
 
