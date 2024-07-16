@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
 import styles from "./Post.module.css";
 import { urlForImage } from "@/app/lib/sanity.image";
