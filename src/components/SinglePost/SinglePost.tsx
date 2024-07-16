@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
@@ -14,7 +13,7 @@ type PostDetailProps = {
 };
 
 export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
-	const { author, categories, content, mainImage, publishedAt, title, likes, _id } = post;
+	const { author, categories, content, mainImage, publishedAt, title, likes, _id, visitors } = post;
 
 	const imgURL = urlForImage(mainImage.image).url();
 	const postPublishedAt = formatDate(publishedAt);
@@ -56,7 +55,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 						</li>
 					</ul>
 					<div className={styles.buttonbox}>
-						<SocialStats likes={likes} postId={_id} />
+						<SocialStats likes={likes} visitors={visitors} postId={_id} />
 					</div>
 				</div>
 			</div>

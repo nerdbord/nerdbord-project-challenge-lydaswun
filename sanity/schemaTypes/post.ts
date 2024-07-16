@@ -83,6 +83,12 @@ export const Post = defineType({
       readOnly: true,
       initialValue: () => 0,
     }),
+    defineField({
+      name: 'visitors',
+      type: 'number',
+      readOnly: true,
+      initialValue: () => 0,
+    }),
   ],
   preview: {
     select: {

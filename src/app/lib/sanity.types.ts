@@ -8,6 +8,7 @@ export type PostCardType = {
 	mainImage: ImageType;
 	categories: CategoryType[];
 	likes: number;
+	visitors: number;
 };
 
 export type PopularPostType = PostCardType & {

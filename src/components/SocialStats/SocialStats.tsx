@@ -10,10 +10,11 @@ import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
 
 type SocialStatsProps = {
 	likes: number;
+	visitors: number;
 	postId: string;
 };
 
-export const SocialStats = ({ likes, postId }: SocialStatsProps) => {
+export const SocialStats = ({ likes, visitors, postId }: SocialStatsProps) => {
 	const [optimisticLikes, setOptimisticLikes] = useOptimistic(likes);
 	const [_isPending, startTransition] = useTransition();
 
@@ -28,7 +29,7 @@ export const SocialStats = ({ likes, postId }: SocialStatsProps) => {
 		<>
 			<div className={styles.social}>
 				<StatsDisplay count={optimisticLikes} icon={IoIosHeartEmpty} label={""} />
-				<StatsDisplay count={50} icon={IoMdPaperPlane} label={""} />
+				<StatsDisplay count={visitors} icon={IoMdPaperPlane} label={""} />
 			</div>
 			<Button
 				text="Like"

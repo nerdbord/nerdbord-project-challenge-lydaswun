@@ -13,6 +13,7 @@ export const Post: React.FC<PostCardType> = ({
 	slug,
 	likes,
 	_id,
+	visitors,
 }) => {
 	const imageURL = urlForImage(mainImage.image).url();
 
@@ -39,7 +40,7 @@ export const Post: React.FC<PostCardType> = ({
 				)}
 			</Link>
 			<div className={styles.buttonbox}>
-				<SocialStats likes={likes} postId={_id} />
+				<SocialStats likes={likes} visitors={visitors} postId={_id} />
 			</div>
 		</article>
 	);

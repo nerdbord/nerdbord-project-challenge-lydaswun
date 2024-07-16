@@ -17,6 +17,7 @@ export const Popular: React.FC<PopularPostType> = ({
 	preview,
 	slug,
 	likes,
+	visitors,
 }) => {
 	const popularImage = urlForImage(mainImage.image).url();
 	const popularPostPublishedAt = formatDate(publishedAt);
@@ -63,7 +64,7 @@ export const Popular: React.FC<PopularPostType> = ({
 					</ul>
 				</Link>
 				<div className={styles.buttonbox}>
-					<SocialStats likes={likes} postId={_id} />
+					<SocialStats likes={likes} visitors={visitors} postId={_id} />
 				</div>
 			</div>
 		</div>

@@ -21,7 +21,9 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slu
     },
     publishedAt,
     preview,
-    content
+    content,
+    likes,
+    visitors
   }`;
 
 export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == null] | order(publishedAt desc){
@@ -39,6 +41,8 @@ export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == null] | orde
     },
     preview,
     publishedAt,
+    likes,
+    visitors
   }`;
 
 export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
@@ -57,5 +61,6 @@ export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
     preview,
     publishedAt,
     popular,
-    likes
+    likes,
+    visitors
   }`;
