@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import { IoIosHeartEmpty, IoMdPaperPlane } from "react-icons/io";
 import Link from "next/link";
 import styles from "./Post.module.css";
@@ -26,7 +25,7 @@ export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slu
 				/>
 
 				<p className={styles.title}>{title}</p>
-				{categories.length > 0 && (
+				{categories?.length > 0 && (
 					<div className={styles.categories}>
 						{categories.map((category) => (
 							<p key={category._id} className={styles.subtitle}>
@@ -36,7 +35,6 @@ export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slu
 					</div>
 				)}
 			</Link>
-			{/* TODO: implement likes and shares logic */}
 			<div className={styles.buttonbox}>
 				<div className={styles.social}>
 					<StatsDisplay count={50} icon={IoIosHeartEmpty} label={""} />

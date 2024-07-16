@@ -26,7 +26,7 @@ export const Form = () => {
 			return;
 		}
 
-		console.log("Subscribed!");
+		console.log("Subscribed!"); // tutaj akcja zapisu do bazy danych
 		setSubscribed(true);
 		setEmail("");
 		localStorage.removeItem("email");

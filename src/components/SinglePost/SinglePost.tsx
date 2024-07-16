@@ -39,7 +39,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 					<ul className={styles.postdata}>
 						<li className={styles.item}>
 							<p>Category</p>
-							{categories.length > 0 && (
+							{categories?.length > 0 && (
 								<div className={styles.categories}>
 									{categories.map((category) => (
 										<p key={category._id} className={styles.subtitle}>
