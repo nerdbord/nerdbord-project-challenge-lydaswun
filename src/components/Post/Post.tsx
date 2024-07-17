@@ -1,17 +1,19 @@
-"use client";
-
 import Image from "next/image";
 import React from "react";
-import { IoIosHeartEmpty, IoMdPaperPlane } from "react-icons/io";
-
 import styles from "./Post.module.css";
 import { urlForImage } from "@/app/lib/sanity.image";
 import { type PostCardType } from "@/app/lib/sanity.types";
-import Arrow from "@/assets/Arrow";
-import { Button } from "@/components/Atoms/Button/Button";
-import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
+import { SocialStats } from "@/components/SocialStats/SocialStats";
 
-export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slug }) => {
+export const Post: React.FC<PostCardType> = ({
+	mainImage,
+	title,
+	categories,
+	slug,
+	likes,
+	_id,
+	visitors,
+}) => {
 	const imageURL = urlForImage(mainImage.image).url();
 
 	return (
@@ -36,20 +38,8 @@ export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slu
 					</div>
 				)}
 			</a>
-			{/* TODO: implement likes and shares logic */}
 			<div className={styles.buttonbox}>
-				<div className={styles.social}>
-					<StatsDisplay count={50} icon={IoIosHeartEmpty} label={""} />
-					<StatsDisplay count={120} icon={IoMdPaperPlane} label={""} />
-				</div>
-				<Button
-					text="Like"
-					onClick={() => alert("Liked!")}
-					variant="primary"
-					icon={Arrow}
-					iconPosition="right"
-					className={styles.button}
-				/>
+				<SocialStats likes={likes} visitors={visitors} postId={_id} />
 			</div>
 		</article>
 	);

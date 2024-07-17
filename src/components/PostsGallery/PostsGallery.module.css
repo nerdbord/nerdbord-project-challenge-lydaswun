@@ -17,6 +17,9 @@
 }
 
 .pagination button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #fff;
 	background-color: inherit;
 	border: 1px solid #666666;
@@ -36,7 +39,7 @@
 	margin: 0 0.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 945px) {
 	.wrapper {
 		margin-bottom: 3rem;
 	}
@@ -51,6 +54,10 @@
 @media (max-width: 576px) {
 	.wrapper {
 		margin-bottom: 3rem;
+	}
+
+	.image {
+		width: 100%;
 	}
 
 	.gallery {

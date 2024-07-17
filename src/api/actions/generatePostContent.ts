@@ -60,7 +60,7 @@ const generateContent = async (title: string, latestPostContent: string) => {
 						role: "user",
 						content: `Oto treść ostatniego posta: "${latestPostContent}".
 
-Wygeneruj nowy, humorystyczny post w takim wulgarnym jebanym stylu na blogu o przetrwaniu w Polsce na temat: "${title}".`,
+Wygeneruj nowy, humorystyczny post w takim wulgarnym jebanym stylu na blogu o przetrwaniu w Polsce na temat: "${title}". Pamiętaj aby zachowac taką samą strukturę`,
 					},
 				],
 			},
