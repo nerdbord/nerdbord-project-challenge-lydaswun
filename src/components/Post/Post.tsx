@@ -14,7 +14,7 @@ export const Post: React.FC<PostCardType> = ({
 	_id,
 	visitors,
 }) => {
-	const imageURL = urlForImage(mainImage.image).url();
+	const imageURL = urlForImage(mainImage?.image).url();
 
 	return (
 		<article className={styles.wrapper}>

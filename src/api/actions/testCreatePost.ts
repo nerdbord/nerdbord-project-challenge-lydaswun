@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { getAuthors } from "@/api/actions/getAuthors";
-import { getCategories } from "@/api/actions/getCategories";
-import { uploadImage } from "@/api/actions/uploadImage";
-import { sanityClient } from "@/app/lib/sanity.client";
-import { generatePostContent } from "@/api/actions/generatePostContent";
+
+import { generatePostContent } from "./generatePostContent";
+import { getAuthors } from "./getAuthors";
+import { getCategories } from "./getCategories";
+import { uploadImage } from "./uploadImage";
 import { slugify } from "@/utils/slugify";
+import { sanityClient } from "@/app/lib/sanity.client";
 
 export async function createPost() {
 	try {
@@ -16,19 +17,17 @@ export async function createPost() {
 			throw new Error("No authors or categories found");
 		}
 
-		const imageAsset = await uploadImage(
-			"https://www.murrano.pl/145196-large_default/nosidlo-drewniane-na-piwo-z-otwieraczem-i-grawerem-dla-przyjaciela-na-18-urodziny.jpg",
-		);
+		const { title, content, imageUrl } = await generatePostContent();
+		const uniqueSlug = slugify(title);
+		console.log("Generated Slug:", uniqueSlug);
+
+		const imageAsset = await uploadImage(imageUrl);
 
 		if (!imageAsset || !imageAsset.document) {
 			throw new Error("Image upload failed");
 		}
 
 		console.log("Uploaded Image Asset:", imageAsset);
-
-		const { title, content } = await generatePostContent();
-		const uniqueSlug = slugify(title);
-		console.log("Generated Slug:", uniqueSlug);
 
 		const newPost = {
 			_type: "post",
