@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { v4 as uuidv4 } from "uuid";
 import { getAuthors } from "@/api/actions/getAuthors";
 import { getCategories } from "@/api/actions/getCategories";
 import { uploadImage } from "@/api/actions/uploadImage";
 import { sanityClient } from "@/app/lib/sanity.client";
 import { generatePostContent } from "@/api/actions/generatePostContent";
+import { slugify } from "@/utils/slugify";
 
 export async function createPost() {
 	try {
@@ -26,7 +27,8 @@ export async function createPost() {
 		console.log("Uploaded Image Asset:", imageAsset);
 
 		const { title, content } = await generatePostContent();
-		const uniqueSlug = `generated-post-${uuidv4()}`;
+		const uniqueSlug = slugify(title);
+		console.log("Generated Slug:", uniqueSlug);
 
 		const newPost = {
 			_type: "post",
@@ -56,11 +58,11 @@ export async function createPost() {
 			content: [
 				{
 					_type: "block",
-					_key: uuidv4(),
+					_key: uniqueSlug,
 					children: [
 						{
 							_type: "span",
-							_key: uuidv4(),
+							_key: `${uniqueSlug}-span`,
 							text: content,
 						},
 					],
