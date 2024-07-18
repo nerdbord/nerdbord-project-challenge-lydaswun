@@ -1,6 +1,6 @@
 "use server";
 
-import { sanityFetch } from "@/app/lib/sanity.client";
+import { sanityFetch } from "@/lib/sanity.client";
 
 export const getImages = async () => {
 	const query = '*[_type == "imageAsset"]{_id, url}';

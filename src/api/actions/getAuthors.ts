@@ -1,10 +1,11 @@
 "use server";
 
-import { sanityFetch } from "../../app/lib/sanity.client.js";
+import { sanityFetch } from "@/lib/sanity.client";
+import { type AuthorType } from "@/lib/sanity.types";
 
 export const getAuthors = async () => {
 	const query = '*[_type == "author"]{_id, name}';
-	const authors = await sanityFetch<{ _id: string; name: string }[]>({ query });
+	const authors = await sanityFetch<AuthorType[]>({ query });
 
 	return authors;
 };

@@ -4,9 +4,7 @@ import { type PortableTextBlock } from "@portabletext/types";
 export type PostCardType = {
 	_id: string;
 	title: string;
-	slug: {
-		current: string;
-	};
+	slug: string;
 	mainImage: ImageType;
 	categories: CategoryType[];
 	likes: number;
@@ -22,10 +20,11 @@ export type PopularPostType = PostCardType & {
 export type PostDetailedType = PostCardType & {
 	author: AuthorType;
 	publishedAt: Date;
-	content: PortableTextBlock;
+	content: PortableTextBlock[];
 };
 
 export type AuthorType = {
+	_id: string;
 	name: string;
 	authorAvatar?: ImageType;
 };

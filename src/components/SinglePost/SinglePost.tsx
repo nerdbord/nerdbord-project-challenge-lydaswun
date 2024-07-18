@@ -3,8 +3,8 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 import styles from "./SinglePost.module.css";
 import nopicture from "@/assets/nopicture.png";
-import { type PostDetailedType } from "@/app/lib/sanity.types";
-import { urlForImage } from "@/app/lib/sanity.image";
+import { type PostDetailedType } from "@/lib/sanity.types";
+import { urlForImage } from "@/lib/sanity.image";
 import { formatDate } from "@/utils/formatDate";
 import { SocialStats } from "@/components/SocialStats/SocialStats";
 
