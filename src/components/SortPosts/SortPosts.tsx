@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SortPosts.module.css";
-import { type PostCardType } from "@/app/lib/sanity.types";
+import { type PostCardType } from "@/lib/sanity.types";
 
 interface SortPostsProps {
 	posts: PostCardType[];
