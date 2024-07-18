@@ -1,7 +1,8 @@
 ﻿"use client";
 
 import { useOptimistic, useTransition } from "react";
-import { IoIosHeartEmpty, IoMdPaperPlane } from "react-icons/io";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoEyeOutline } from "react-icons/io5";
 import styles from "./SocialStats.module.css";
 import { addLike } from "@/api/actions";
 import Arrow from "@/assets/Arrow";
@@ -29,7 +30,7 @@ export const SocialStats = ({ likes, visitors, postId }: SocialStatsProps) => {
 		<>
 			<div className={styles.social}>
 				<StatsDisplay count={optimisticLikes} icon={IoIosHeartEmpty} label={""} />
-				<StatsDisplay count={visitors} icon={IoMdPaperPlane} label={""} />
+				<StatsDisplay count={visitors} icon={IoEyeOutline} label={""} />
 			</div>
 			<Button
 				text="Like"

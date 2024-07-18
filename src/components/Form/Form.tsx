@@ -29,6 +29,7 @@ export const Form = () => {
 
 		await submitNewSubscriber({
 			email: email,
+			groupId: process.env.MAILERLITE_GROUP_ID as string,
 		});
 		setSubscribed(true);
 		setEmail("");

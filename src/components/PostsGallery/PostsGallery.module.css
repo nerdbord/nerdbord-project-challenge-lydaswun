@@ -2,6 +2,12 @@
 	margin-bottom: 6rem;
 }
 
+.section {
+	text-align: start;
+	color: #f1c40f;
+	font-size: 2rem;
+}
+
 .gallery {
 	margin-top: 3rem;
 	display: grid;
@@ -37,6 +43,10 @@
 
 .pagination span {
 	margin: 0 0.5rem;
+}
+
+.empty {
+	padding: 4rem;
 }
 
 @media (max-width: 945px) {

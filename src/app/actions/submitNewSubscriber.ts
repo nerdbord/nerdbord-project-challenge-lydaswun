@@ -3,18 +3,14 @@
 import { addSubscriberToMailerLite } from "@/lib/mailerlite";
 
 export const submitNewSubscriber = async ({
-	name,
 	email,
 	groupId,
 }: {
-	name: string;
 	email: string;
 	groupId: string;
 }) => {
 	try {
-		await addSubscriberToMailerLite(email, groupId, {
-			name,
-		});
+		await addSubscriberToMailerLite(email, groupId);
 	} catch (error) {
 		console.error("Error adding subscriber to MailerLite");
 	}

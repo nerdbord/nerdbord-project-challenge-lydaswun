@@ -1,0 +1,35 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 20px;
+}
+
+.label {
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+.sort {
+	padding: 5px;
+	font-size: 1rem;
+	color: inherit;
+	background-color: transparent;
+	cursor: pointer;
+	transition:
+		border-color 0.3s,
+		box-shadow 0.3s;
+}
+
+.sort:focus {
+	border-color: #f1c40f;
+	box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.sort option {
+	background-color: #1a1a1a;
+	padding: 10px;
+	border-radius: none;
+	font-size: 1rem;
+	border: 1px solid white;
+}

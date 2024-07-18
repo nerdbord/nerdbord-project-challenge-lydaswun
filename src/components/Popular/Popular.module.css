@@ -4,8 +4,14 @@
 	align-items: center;
 	margin: 0 auto;
 	gap: 3rem;
-	padding-top: 4rem;
 	padding-bottom: 4rem;
+	border-bottom: 1px solid#666666;
+}
+
+.section {
+	text-align: start;
+	color: #f1c40f;
+	font-size: 2rem;
 }
 
 .descbox {
@@ -30,6 +36,7 @@
 
 .postdata {
 	display: flex;
+	align-items: center;
 	gap: 2rem;
 }
 
@@ -90,5 +97,10 @@
 
 	.image {
 		width: 100%;
+	}
+
+	.postdata {
+		justify-content: center;
+		gap: 2rem;
 	}
 }
