@@ -17,6 +17,7 @@ const blockContentSchema = defaultSchema
 
 export const createBlockContent = (html: string) => {
 	return htmlToBlocks(html, blockContentSchema, {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		parseHtml: (html) => new JSDOM(html).window.document,
 	});
 };
