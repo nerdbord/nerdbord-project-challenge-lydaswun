@@ -6,6 +6,6 @@ import { type PostCardType } from "@/app/lib/sanity.types";
 
 export const getAllPosts = async () => {
 	const posts = await sanityFetch<PostCardType[]>({ query: ALL_POSTS_QUERY });
-
+	console.log("Fetched Posts: ", posts);
 	return posts;
 };

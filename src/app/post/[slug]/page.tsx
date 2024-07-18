@@ -1,13 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import { SinglePost } from "@/components/SinglePost/SinglePost";
-import { getPostBySlug } from "@/api/actions/getPostBySlug";
+import { countPostVisitors, getPostBySlug } from "@/api/actions";
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
 	const post = await getPostBySlug(params.slug);
 
+	if (!post) {
+		notFound();
+	}
+
+	await countPostVisitors(post._id);
+
 	return (
 		<div className={styles.container}>
-			{post ? <SinglePost post={post} /> : <div>Post not found</div>}
+			<SinglePost post={post} />
 		</div>
 	);
 }

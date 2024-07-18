@@ -25,6 +25,12 @@
 	margin-right: 5px;
 }
 
+.postnav {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+
 .links {
 	display: flex;
 	gap: 2rem;
@@ -69,6 +75,12 @@
 		border-bottom-right-radius: 30px;
 	}
 
+	.postnav {
+		display: flex;
+		align-items: center;
+		gap: 3rem;
+	}
+
 	.links {
 		display: flex;
 		flex-direction: column;
@@ -96,5 +108,14 @@
 
 	.header > .Button {
 		display: none;
+	}
+}
+
+@media (max-width: 576px) {
+	.postnav {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		gap: 1rem;
 	}
 }

@@ -1,11 +1,16 @@
+import { type SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { type PortableTextBlock } from "@portabletext/types";
 
 export type PostCardType = {
 	_id: string;
 	title: string;
-	slug: string;
+	slug: {
+		current: string;
+	};
 	mainImage: ImageType;
 	categories: CategoryType[];
+	likes: number;
+	visitors: number;
 };
 
 export type PopularPostType = PostCardType & {
@@ -17,7 +22,7 @@ export type PopularPostType = PostCardType & {
 export type PostDetailedType = PostCardType & {
 	author: AuthorType;
 	publishedAt: Date;
-	content: PortableTextBlock[];
+	content: PortableTextBlock;
 };
 
 export type AuthorType = {
@@ -26,10 +31,7 @@ export type AuthorType = {
 };
 
 export type ImageType = {
-	image: unknown;
-	asset: {
-		_ref: string;
-	};
+	image: SanityImageSource;
 	alt: string;
 };
 

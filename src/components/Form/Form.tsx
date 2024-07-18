@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../Atoms/Button/Button";
 import styles from "./Form.module.css";
+import { submitNewSubscriber } from "@/app/actions/submitNewSubscriber";
 
 export const Form = () => {
 	const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ export const Form = () => {
 		}
 	}, []);
 
-	const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(email)) {
@@ -26,7 +27,10 @@ export const Form = () => {
 			return;
 		}
 
-		console.log("Subscribed!");
+		await submitNewSubscriber({
+			email: email,
+			groupId: process.env.MAILERLITE_GROUP_ID,
+		});
 		setSubscribed(true);
 		setEmail("");
 		localStorage.removeItem("email");

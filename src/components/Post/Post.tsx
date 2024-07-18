@@ -1,31 +1,32 @@
-"use client";
-
 import Image from "next/image";
 import React from "react";
-import { IoIosHeartEmpty, IoMdPaperPlane } from "react-icons/io";
-import Link from "next/link";
 import styles from "./Post.module.css";
 import { urlForImage } from "@/app/lib/sanity.image";
 import { type PostCardType } from "@/app/lib/sanity.types";
-import Arrow from "@/assets/Arrow";
-import { Button } from "@/components/Atoms/Button/Button";
-import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
+import { SocialStats } from "@/components/SocialStats/SocialStats";
 
-export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slug }) => {
-	const imageURL = mainImage?.asset?._ref ? urlForImage(mainImage).url() : "";
+export const Post: React.FC<PostCardType> = ({
+	mainImage,
+	title,
+	categories,
+	slug,
+	likes,
+	_id,
+	visitors,
+}) => {
+	const imageURL = urlForImage(mainImage.image).url();
 
 	return (
 		<article className={styles.wrapper}>
-			<Link href={`/post/${slug}`} className={styles.postLink}>
-				{imageURL && (
-					<Image
-						src={imageURL}
-						width={400}
-						height={200}
-						alt={mainImage.alt}
-						className={styles.image}
-					/>
-				)}
+			<a href={`/post/${slug.current}`} className={styles.postLink}>
+				<Image
+					src={imageURL}
+					width={400}
+					height={200}
+					alt={mainImage.alt}
+					className={styles.image}
+				/>
+
 				<p className={styles.title}>{title}</p>
 				{categories?.length > 0 && (
 					<div className={styles.categories}>
@@ -36,20 +37,9 @@ export const Post: React.FC<PostCardType> = ({ mainImage, title, categories, slu
 						))}
 					</div>
 				)}
-			</Link>
+			</a>
 			<div className={styles.buttonbox}>
-				<div className={styles.social}>
-					<StatsDisplay count={50} icon={IoIosHeartEmpty} label={""} />
-					<StatsDisplay count={120} icon={IoMdPaperPlane} label={""} />
-				</div>
-				<Button
-					text="Like"
-					onClick={() => alert("Liked!")}
-					variant="primary"
-					icon={Arrow}
-					iconPosition="right"
-					className={styles.button}
-				/>
+				<SocialStats likes={likes} visitors={visitors} postId={_id} />
 			</div>
 		</article>
 	);
