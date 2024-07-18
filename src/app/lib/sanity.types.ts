@@ -9,6 +9,7 @@ export type PostCardType = {
 	categories: CategoryType[];
 	likes: number;
 	visitors: number;
+	publishedAt: Date;
 };
 
 export type PopularPostType = PostCardType & {
