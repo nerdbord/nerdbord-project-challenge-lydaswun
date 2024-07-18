@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-import { generatePostContent } from "./generatePostContent";
-import { getAuthors } from "./getAuthors";
-import { getCategories } from "./getCategories";
-import { uploadImage } from "./uploadImage";
-import { slugify } from "@/utils/slugify";
+import { getAuthors } from "@/api/actions/getAuthors";
+import { getCategories } from "@/api/actions/getCategories";
+import { uploadImage } from "@/api/actions/uploadImage";
 import { sanityClient } from "@/app/lib/sanity.client";
+import { generatePostContent } from "@/api/actions/generatePostContent";
+import { slugify } from "@/utils/slugify";
 
 export async function createPost() {
 	try {
