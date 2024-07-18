@@ -21,10 +21,11 @@ export type PopularPostType = PostCardType & {
 export type PostDetailedType = PostCardType & {
 	author: AuthorType;
 	publishedAt: Date;
-	content: PortableTextBlock;
+	content: PortableTextBlock[];
 };
 
 export type AuthorType = {
+	_id: string;
 	name: string;
 	authorAvatar?: ImageType;
 };

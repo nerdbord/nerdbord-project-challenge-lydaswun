@@ -4,7 +4,7 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { Post } from "../Post/Post";
 import { SortPosts } from "../SortPosts/SortPosts";
 import styles from "./PostsGallery.module.css";
-import { type PostCardType } from "@/app/lib/sanity.types";
+import { type PostCardType } from "@/lib/sanity.types";
 
 interface PostGalleryProps {
 	posts: PostCardType[];

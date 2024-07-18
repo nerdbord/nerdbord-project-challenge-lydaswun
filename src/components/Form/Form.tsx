@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../Atoms/Button/Button";
 import styles from "./Form.module.css";
-import { submitNewSubscriber } from "@/app/actions/submitNewSubscriber";
+import { submitNewSubscriber } from "@/api/actions";
 
 export const Form = () => {
 	const [email, setEmail] = useState("");

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import React from "react";
 import styles from "./Post.module.css";
-import { urlForImage } from "@/app/lib/sanity.image";
-import { type PostCardType } from "@/app/lib/sanity.types";
+import { urlForImage } from "@/lib/sanity.image";
+import { type PostCardType } from "@/lib/sanity.types";
 import { SocialStats } from "@/components/SocialStats/SocialStats";
 
 export const Post: React.FC<PostCardType> = ({
@@ -18,7 +18,7 @@ export const Post: React.FC<PostCardType> = ({
 
 	return (
 		<article className={styles.wrapper}>
-			<Link href={`/post/${slug}`} className={styles.postLink}>
+			<a href={`/post/${slug}`} className={styles.postLink}>
 				<Image
 					src={imageURL}
 					width={400}
@@ -37,7 +37,7 @@ export const Post: React.FC<PostCardType> = ({
 						))}
 					</div>
 				)}
-			</Link>
+			</a>
 			<div className={styles.buttonbox}>
 				<SocialStats likes={likes} visitors={visitors} postId={_id} />
 			</div>

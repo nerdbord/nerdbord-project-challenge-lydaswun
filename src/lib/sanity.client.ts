@@ -1,5 +1,4 @@
 ﻿import "server-only";
-
 import { createClient, type QueryParams } from "next-sanity";
 
 export const sanityClient = createClient({

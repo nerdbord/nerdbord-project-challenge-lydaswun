@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Popular.module.css";
-import { type PopularPostType } from "@/app/lib/sanity.types";
-import { urlForImage } from "@/app/lib/sanity.image";
+import { type PopularPostType } from "@/lib/sanity.types";
+import { urlForImage } from "@/lib/sanity.image";
 import { formatDate } from "@/utils/formatDate";
 import { SocialStats } from "@/components/SocialStats/SocialStats";
 
