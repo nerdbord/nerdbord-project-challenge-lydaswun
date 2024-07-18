@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import { SinglePost } from "@/components/SinglePost/SinglePost";
