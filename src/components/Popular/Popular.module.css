@@ -36,6 +36,7 @@
 
 .postdata {
 	display: flex;
+	align-items: center;
 	gap: 2rem;
 }
 
@@ -96,5 +97,10 @@
 
 	.image {
 		width: 100%;
+	}
+
+	.postdata {
+		justify-content: center;
+		gap: 2rem;
 	}
 }

@@ -1,13 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa";
 import { Button } from "../Atoms/Button/Button";
+import { Modal } from "../Atoms/Modal/Modal";
+import { Form } from "../Form/Form";
 import styles from "./Footer.module.css";
 import Arrow from "@/assets/Arrow";
 
 export const Footer = () => {
 	const year = new Date().getFullYear();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.topbar}>
@@ -62,7 +72,13 @@ export const Footer = () => {
 				<div className={styles.item}>
 					<span className={styles.title}>Newsletter</span>
 					<ul>
-						<Button text="Subscribe" variant="primary" icon={Arrow} iconPosition="right" />
+						<Button
+							text="Subscribe"
+							onClick={openModal}
+							variant="primary"
+							icon={Arrow}
+							iconPosition="right"
+						/>
 					</ul>
 				</div>
 			</div>
@@ -76,9 +92,12 @@ export const Footer = () => {
 					<FaFacebook />
 				</div>
 				<div className={styles.copy}>
-					<p>© {year} FutureTech. All rights reserved.</p>
+					<p>© {year} buty-z-kalkuty. All rights reserved.</p>
 				</div>
 			</div>
+			<Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+				<Form />
+			</Modal>
 		</footer>
 	);
 };

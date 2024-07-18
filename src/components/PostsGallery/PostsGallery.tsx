@@ -33,35 +33,35 @@ export const PostGallery: React.FC<PostGalleryProps> = ({ posts, postsPerPage = 
 		setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
 	};
 
-	if (!posts.length) {
-		return <h2 className={styles.empty}>No posts to display!</h2>;
-	}
-
 	return (
 		<>
 			{" "}
 			<p className={styles.section}>All post</p>
-			<div id="allposts" className={styles.wrapper}>
-				<SortPosts posts={posts} setSortedPosts={setSortedPosts} />
-				<div className={styles.gallery}>
-					{currentPosts.map((post) => (
-						<Post key={post._id} {...post} />
-					))}
-				</div>
-				{totalPages > 1 && (
-					<div className={styles.pagination}>
-						<button onClick={handlePreviousPage} disabled={currentPage === 1}>
-							<RiArrowLeftSLine />
-						</button>
-						<span>
-							{currentPage} / {totalPages}
-						</span>
-						<button onClick={handleNextPage} disabled={currentPage === totalPages}>
-							<RiArrowRightSLine />
-						</button>
+			{!sortedPosts.length ? (
+				<h2 className={styles.empty}>No posts to display!</h2>
+			) : (
+				<div id="allposts" className={styles.wrapper}>
+					<SortPosts posts={posts} setSortedPosts={setSortedPosts} />
+					<div className={styles.gallery}>
+						{currentPosts.map((post) => (
+							<Post key={post._id} {...post} />
+						))}
 					</div>
-				)}
-			</div>
+					{totalPages > 1 && (
+						<div className={styles.pagination}>
+							<button onClick={handlePreviousPage} disabled={currentPage === 1}>
+								<RiArrowLeftSLine />
+							</button>
+							<span>
+								{currentPage} / {totalPages}
+							</span>
+							<button onClick={handleNextPage} disabled={currentPage === totalPages}>
+								<RiArrowRightSLine />
+							</button>
+						</div>
+					)}
+				</div>
+			)}
 		</>
 	);
 };
