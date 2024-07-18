@@ -1,17 +1,21 @@
 "use server";
 
-import { addSubscriberToMailerLite } from "../lib/mailerlite";
+import { addSubscriberToMailerLite } from "@/lib/mailerlite";
 
 export const submitNewSubscriber = async ({
-	name,
+	name = "",
 	email,
-	groupId,
 }: {
-	name: string;
+	name?: string;
 	email: string;
-	groupId: string;
 }) => {
 	try {
+		const groupId = process.env.MAILERLITE_GROUP_ID;
+
+		if (!groupId) {
+			throw new Error("No MailerLite group ID found");
+		}
+
 		await addSubscriberToMailerLite(email, groupId, {
 			name,
 		});

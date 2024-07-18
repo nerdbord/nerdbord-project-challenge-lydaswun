@@ -7,12 +7,12 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slu
   "author": {
     "name": author->name,
     "authorAvatar": {
-      "image": author->authorAvatar.asset->url,
+      "image": author->authorAvatar,
       "alt": author->authorAvatar.alt
     }
   },
   "mainImage": {
-    "image": mainImage.asset->url,
+    "image": mainImage,
     "alt": mainImage.alt
   },
   "categories": categories[]->{
@@ -21,18 +21,18 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slu
   },
   publishedAt,
   preview,
-  content
+  content,
+  likes,
+  visitors,
 }`;
 
-export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == null] | order(publishedAt desc){
+export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == false] | order(publishedAt desc){
   _id,
   title,
-  "slug": {
-    "current": slug.current
-  },
+  "slug":  slug.current,
   "author": author->{name},
   "mainImage": {
-    "image": mainImage.asset->url,
+    "image": mainImage,
     "alt": mainImage.alt
   },
   "categories": categories[]->{
@@ -41,17 +41,17 @@ export const ALL_POSTS_QUERY = groq`*[_type == "post" && popular == null] | orde
   },
   preview,
   publishedAt,
+  likes,
+  visitors,
 }`;
 
 export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
   _id,
   title,
-  "slug": {
-    "current": slug.current
-  },
+  "slug": slug.current,
   "author": author->{name},
   "mainImage": {
-    "image": mainImage.asset->url,
+    "image": mainImage,
     "alt": mainImage.alt
   },
   "categories": categories[]->{
@@ -60,5 +60,7 @@ export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
   },
   preview,
   publishedAt,
-  popular
+  popular,
+  likes,
+  visitors,
 }`;

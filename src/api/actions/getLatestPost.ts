@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-import { groq } from "next-sanity";
-import { sanityClient } from "@/app/lib/sanity.client";
+"use server";
+
+import { groq, type PortableTextBlock } from "next-sanity";
+import { sanityFetch } from "@/lib/sanity.client";
 
 const LATEST_POST_QUERY = groq`
   *[_type == "post"] | order(_createdAt desc)[0] {
@@ -11,9 +10,20 @@ const LATEST_POST_QUERY = groq`
   }
 `;
 
+type LatestPost = {
+	title: string;
+	content: PortableTextBlock[];
+};
+
 export const getLatestPost = async () => {
 	try {
-		const latestPost = await sanityClient.fetch(LATEST_POST_QUERY);
+		const latestPost = await sanityFetch<LatestPost | null>({ query: LATEST_POST_QUERY });
+
+		if (!latestPost) {
+			console.log("No latest post found");
+			return null;
+		}
+
 		return latestPost;
 	} catch (error) {
 		console.error("Error fetching latest post:", error);

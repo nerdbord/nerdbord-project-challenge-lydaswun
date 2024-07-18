@@ -1,8 +1,6 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 import MailerLite from "@mailerlite/mailerlite-nodejs";
 
 export const mailerLiteClient = new MailerLite({

@@ -3,3 +3,8 @@ export { getAllPosts } from "./getAllPosts";
 export { getPostBySlug } from "./getPostBySlug";
 export { addLike } from "./addLike";
 export { countPostVisitors } from "./countPostVisitors";
+export { getAuthors } from "./getAuthors";
+export { getCategories } from "./getCategories";
+export { uploadImage } from "./uploadImage";
+export { getLatestPost } from "./getLatestPost";
+export { submitNewSubscriber } from "./submitNewSubscriber";
