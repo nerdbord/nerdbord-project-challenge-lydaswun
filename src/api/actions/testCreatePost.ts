@@ -16,19 +16,17 @@ export async function createPost() {
 			throw new Error("No authors or categories found");
 		}
 
-		const imageAsset = await uploadImage(
-			"https://www.murrano.pl/145196-large_default/nosidlo-drewniane-na-piwo-z-otwieraczem-i-grawerem-dla-przyjaciela-na-18-urodziny.jpg",
-		);
+		const { title, content, imageUrl } = await generatePostContent();
+		const uniqueSlug = slugify(title);
+		console.log("Generated Slug:", uniqueSlug);
+
+		const imageAsset = await uploadImage(imageUrl);
 
 		if (!imageAsset || !imageAsset.document) {
 			throw new Error("Image upload failed");
 		}
 
 		console.log("Uploaded Image Asset:", imageAsset);
-
-		const { title, content } = await generatePostContent();
-		const uniqueSlug = slugify(title);
-		console.log("Generated Slug:", uniqueSlug);
 
 		const newPost = {
 			_type: "post",

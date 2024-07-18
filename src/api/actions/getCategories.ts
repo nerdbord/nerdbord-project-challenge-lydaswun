@@ -1,6 +1,6 @@
 "use server";
 
-import { sanityFetch } from "@/app/lib/sanity.client";
+import { sanityFetch } from "../../app/lib/sanity.client.js";
 
 export const getCategories = async () => {
 	const query = '*[_type == "category"]{_id, name}';

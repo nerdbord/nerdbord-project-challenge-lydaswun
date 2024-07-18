@@ -27,6 +27,20 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "deletePosts.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"deletePosts.js",
+		"src/services/cronJob.mts",
+		"src/api/actions/testCreatePost.ts",
+		"src/api/actions/getAuthors.ts",
+		"src/api/actions/getCategories.mts",
+		"src/api/actions/uploadImage.mts",
+		"src/api/actions/generatePostContent.ts",
+		"src/utils/slugify.ts",
+		"src/app/lib/sanity.client.ts"
+	],
 	"exclude": ["node_modules"]
 }

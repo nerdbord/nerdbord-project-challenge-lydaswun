@@ -4,9 +4,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import axios from "axios";
-import { getLatestPost } from "@/api/actions/getLatestPost";
+import { getLatestPost } from "./getLatestPost";
 
 const GPT_API_URL = "https://training.nerdbord.io/api/v1/openai/chat/completions";
+const GPT_IMAGE_API_URL = "https://training.nerdbord.io/api/v1/openai/images/generations";
 const GPT_API_KEY = process.env.GPT_API_KEY;
 
 const generateTitle = async (latestPostTitle: string) => {
@@ -83,13 +84,41 @@ Wygeneruj nowy, humorystyczny post w takim wulgarnym jebanym stylu na blogu o pr
 	}
 };
 
+const generateImage = async (title: string) => {
+	const prompt = `Create a humorous and angry image in a vulgar style, matching the title: "${title}". The image should have a consistent artistic style that fits the theme.`;
+	try {
+		const response = await axios.post(
+			GPT_IMAGE_API_URL,
+			{
+				prompt,
+				n: 1,
+				size: "1024x1024",
+			},
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${GPT_API_KEY}`,
+				},
+			},
+		);
+
+		console.log("GPT Image API response:", JSON.stringify(response.data, null, 2));
+		const imageUrl = response.data.data[0].url;
+		return imageUrl;
+	} catch (error) {
+		console.error("Error generating image:", error);
+		throw error;
+	}
+};
+
 export const generatePostContent = async () => {
 	try {
 		const latestPost = await getLatestPost();
 		console.log("Latest Post:", JSON.stringify(latestPost, null, 2));
 		const title = await generateTitle(latestPost.title);
 		const content = await generateContent(title, latestPost.content);
-		return { title, content };
+		const imageUrl = await generateImage(title);
+		return { title, content, imageUrl };
 	} catch (error) {
 		console.error("Error generating post content:", error);
 		throw error;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NextResponse } from "next/server";
-import { getAuthors } from "@/api/actions/getAuthors";
+import { getAuthors } from "@/api/actions/getAuthors.js";
 
 export async function GET() {
 	try {
