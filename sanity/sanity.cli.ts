@@ -1,8 +1,9 @@
-import {defineCliConfig} from 'sanity/cli'
+import {createClient} from 'next-sanity'
 
-export default defineCliConfig({
-  api: {
-    projectId: 'dr96nfh9',
-    dataset: 'production',
-  },
+export const sanityClient = createClient({
+  projectId: 'dr96nfh9',
+  dataset: 'production',
+  apiVersion: '2021-06-07',
+  token: process.env.SANITY_TOKEN,
+  useCdn: false,
 })

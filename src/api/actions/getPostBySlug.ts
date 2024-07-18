@@ -1,10 +1,10 @@
 ﻿"use server";
 
-import { sanityFetch } from "@/app/lib/sanity.client";
-import { POST_BY_SLUG_QUERY } from "@/app/lib/sanity.queries";
-import { type PostDetailedType } from "@/app/lib/sanity.types";
+import { sanityFetch } from "@/lib/sanity.client";
+import { POST_BY_SLUG_QUERY } from "@/lib/sanity.queries";
+import { type PostDetailedType } from "@/lib/sanity.types";
 
-export const getPostBySlug = async (slug: string) => {
+export const getPostBySlug = async (slug: string): Promise<PostDetailedType | null> => {
 	try {
 		const post = await sanityFetch<PostDetailedType>({
 			query: POST_BY_SLUG_QUERY,
