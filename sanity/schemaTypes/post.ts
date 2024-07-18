@@ -65,6 +65,7 @@ export const Post = defineType({
       type: 'boolean',
       title: 'Popular post',
       description: 'Show this post on the popular posts section',
+      initialValue: () => false,
     }),
     defineField({
       name: 'preview',
