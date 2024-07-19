@@ -18,7 +18,13 @@ export async function createPost() {
 			throw new Error("No authors or categories found");
 		}
 
-		const { newPostTitle, newPostContent, newPostImageUrl } = await generatePostContent();
+		const {
+			newPostTitle,
+			newPostContent,
+			newPostImageUrl,
+			newPostCategoriesWithRef,
+			newPostPreview,
+		} = await generatePostContent();
 		const uniqueSlug = slugify(newPostTitle);
 		console.log("Generated Slug:", uniqueSlug);
 
@@ -52,16 +58,10 @@ export async function createPost() {
 				},
 				alt: "Post Image",
 			},
-			categories: [
-				{
-					_type: "reference",
-					_ref: categories[Math.floor(Math.random() * categories.length)]._id,
-					_key: uuid(),
-				},
-			],
+			categories: newPostCategoriesWithRef,
 			publishedAt: new Date().toISOString(),
 			popular: false,
-			preview: "",
+			preview: newPostPreview,
 			content: contentBlock,
 			likes: 0,
 			visitors: 0,

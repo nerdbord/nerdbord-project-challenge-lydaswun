@@ -1,10 +1,11 @@
-import { getLatestPost } from "@/api/actions";
+import { getCategories } from "@/api/actions";
+import { mapCategoryToCategoryWithRef } from "@/mappers/mapCategoryToCategoryWithRef";
 import { generateGPTContent } from "@/utils/generateGPTContent";
 import { generateGPTImage } from "@/utils/generateGPTImage";
-import { serializePortableTextToString } from "@/utils/serializePortableTextToString";
+import { getRandomCategories } from "@/utils/getRandomCategories";
 
-const generateTitle = async (latestPostTitle: string) => {
-	const prompt = `Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland". Your task is to come up with a topic for a new, interesting blog article. The topic can be from any field, for example wise shopping, dealing with official matters, school, work, etc. The topic must comply with the rules of the Polish language and contain one word commonly considered a swear word. Your topic must also be specific, simple, fun and interesting. The maximum length of the subject line is five words, and each first letter must be uppercase. The topic of the new article must be different from the previous one - ${latestPostTitle}.`;
+const generateTitle = async (categories: string) => {
+	const prompt = `Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland". Your task is to come up with a topic for a new, interesting blog article. The topic can be from the fields: ${categories}. The topic must comply with the rules of the Polish language and contain one word commonly considered a swear word. Your topic must also be specific, simple, fun and interesting. The maximum length of the subject line is five words, and each first letter must be uppercase.`;
 
 	try {
 		const title = await generateGPTContent(prompt);
@@ -16,9 +17,9 @@ const generateTitle = async (latestPostTitle: string) => {
 	}
 };
 
-const generateContent = async (title: string, latestPostContent: string) => {
+const generateContent = async (title: string, categories: string) => {
 	const prompt = `
-Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland." Your task is to create a new blog entry that is humorous and interesting about ${title}. The topic must comply with the rules of the Polish language and contain words commonly considered swear words. Build your post using HTML tags such as: <h1>, <h2>, <h3>, <h4>, <p>, <strong>, <em>, <a>, <li>, <ul>, <ol>, <blockquote>. Don't use the "/n" character at all. Express your answer as '<html><body>'Your answer'</body></html>'. Write clean output. The post must be different from the previous one. The previous post is: ${latestPostContent}. Put your post in the form of a blog entry. Remember to include a title, introduction, main part, and conclusion. The post must be at least 500 words long. At the end of the post, include a link to the previous post. The post must be humorous, slightly vulgar, and of the highest possible quality. Sign post as "Buziaczki od Waszego PatoBlogera".
+Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland." Your task is to create a new blog entry that is humorous and interesting about ${title}. The topic must comply with the given ${categories}, the rules of the Polish language and contain words commonly considered swear words. Build your post using HTML tags such as: <h1>, <h2>, <h3>, <h4>, <p>, <strong>, <em>, <a>, <li>, <ul>, <ol>, <blockquote>. Don't use the "/n" character at all. Express your answer as '<html><body>'Your answer'</body></html>'. Write clean output. Put your post in the form of a blog entry. Remember to include an introduction, main part, and conclusion. Avoid title in post. The post must be at least 500 words long. The post must be humorous, slightly vulgar, and of the highest possible quality. Sign post as "Buziaczki od Waszego PatoBlogera".
 `;
 
 	try {
@@ -31,8 +32,22 @@ Your role is to be a very talented and internet-famous pathologist. You run a po
 	}
 };
 
+const generatePostPreview = async (title: string, content: string) => {
+	const prompt = `Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland." You created a new post with the title: ${title} and content: ${content}. Now, you have to create short preview to the post. Create just one sentence. Write clean output. The preview must comply with the rules of Polish language.`;
+
+	try {
+		const preview = await generateGPTContent(prompt);
+
+		return preview;
+	} catch (error) {
+		console.error("Error generating preview:", error);
+		throw error;
+	}
+};
+
 const generateImage = async (title: string) => {
 	const prompt = `Your role is to be a computer graphic designer with great skills. You collaborate with a friend pathoblogger to create beautiful and detailed images for his  posts. Your task is to create an illustration that matches the new post titled: ${title}. The illustration must be humorous, slightly vulgar and of the highest possible quality. You are prohibited from placing subtitles or other texts on the image.`;
+
 	try {
 		const imgUrl = await generateGPTImage(prompt);
 
@@ -45,25 +60,26 @@ const generateImage = async (title: string) => {
 
 export const generatePostContent = async () => {
 	try {
-		const latestPost = await getLatestPost();
+		const categories = await getCategories();
 
-		let newPostTitle: string;
-		let newPostContent: string;
+		const newPostCategories = getRandomCategories(categories, 2);
+		const newPostCategoriesNames = newPostCategories.map((category) => category.name).join(", ");
+		const newPostCategoriesWithRef = newPostCategories.map((category) =>
+			mapCategoryToCategoryWithRef(category),
+		);
 
-		if (latestPost) {
-			const { title, content } = latestPost;
-			const serializedContent = serializePortableTextToString(content);
-
-			newPostTitle = await generateTitle(title);
-			newPostContent = await generateContent(newPostTitle, serializedContent);
-		} else {
-			newPostTitle = await generateTitle("Dowolny tytuł");
-			newPostContent = await generateContent(newPostTitle, "Dowolna treść");
-		}
-
+		const newPostTitle = await generateTitle(newPostCategoriesNames);
+		const newPostContent = await generateContent(newPostTitle, newPostCategoriesNames);
 		const newPostImageUrl = await generateImage(newPostTitle);
+		const newPostPreview = await generatePostPreview(newPostTitle, newPostContent);
 
-		return { newPostTitle, newPostContent, newPostImageUrl };
+		return {
+			newPostTitle,
+			newPostContent,
+			newPostImageUrl,
+			newPostCategoriesWithRef,
+			newPostPreview,
+		};
 	} catch (error) {
 		console.error("Error generating post content:", error);
 		throw error;
