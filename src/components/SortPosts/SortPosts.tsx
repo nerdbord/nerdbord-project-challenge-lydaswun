@@ -17,8 +17,8 @@ export const SortPosts: React.FC<SortPostsProps> = ({ posts, setSortedPosts }) =
 		const sortedPosts = [...posts];
 		if (value === "date") {
 			sortedPosts.sort((a, b) => {
-				const dateA = new Date(a.publishedAt as string);
-				const dateB = new Date(b.publishedAt as string);
+				const dateA = new Date(a.publishedAt);
+				const dateB = new Date(b.publishedAt);
 				if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
 					return 0;
 				}

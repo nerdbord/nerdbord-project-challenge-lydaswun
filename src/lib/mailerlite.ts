@@ -9,7 +9,7 @@ export const mailerLiteClient = new MailerLite({
 
 export async function addSubscriberToMailerLite(
 	email: string,
-	groupId: string,
+	groupId?: string,
 	fields?: Record<string, string>,
 ) {
 	if (!process.env.MAILERLITE_GROUP_ID) {
