@@ -64,3 +64,7 @@ export const POPULAR_POST_QUERY = groq`*[_type == "post" && popular == true][0]{
   likes,
   visitors,
 }`;
+
+export const ALL_TITLES_QUERY = groq`*[_type == "post"]{
+  title
+}`;

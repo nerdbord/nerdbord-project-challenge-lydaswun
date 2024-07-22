@@ -1,11 +1,12 @@
 import { getCategories } from "@/api/actions";
+import { getAllTitles } from "@/api/actions/getAllTitles";
 import { mapCategoryToCategoryWithRef } from "@/mappers/mapCategoryToCategoryWithRef";
 import { generateGPTContent } from "@/utils/generateGPTContent";
 import { generateGPTImage } from "@/utils/generateGPTImage";
 import { getRandomCategories } from "@/utils/getRandomCategories";
 
-const generateTitle = async (categories: string) => {
-	const prompt = `Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland". Your task is to come up with a topic for a new, interesting blog article. The topic can be from the fields: ${categories}. The topic must comply with the rules of the Polish language and contain one word commonly considered a swear word. Your topic must also be specific, simple, fun and interesting. The maximum length of the subject line is five words, and each first letter must be uppercase.`;
+const generateTitle = async (categories: string, lastTitles: string) => {
+	const prompt = `Your role is to be a very talented and internet-famous pathologist. You run a popular survival blog about "How to live in Poland". Your task is to come up with a topic for a new, interesting blog article. The topic can be from the fields: ${categories} and should be different than these: ${lastTitles}. The topic must comply with the rules of the Polish language and contain one word commonly considered a swear word. Your topic must also be specific, simple, fun and interesting. The maximum length of the subject line is five words, and each first letter must be uppercase. Please do not use a quotes in the topic. Write clean output.`;
 
 	try {
 		const title = await generateGPTContent(prompt);
@@ -61,14 +62,13 @@ const generateImage = async (title: string) => {
 export const generatePostContent = async () => {
 	try {
 		const categories = await getCategories();
+		const lastTitles = (await getAllTitles()).map((title) => title.title).join(", ");
 
 		const newPostCategories = getRandomCategories(categories, 2);
 		const newPostCategoriesNames = newPostCategories.map((category) => category.name).join(", ");
-		const newPostCategoriesWithRef = newPostCategories.map((category) =>
-			mapCategoryToCategoryWithRef(category),
-		);
+		const newPostCategoriesWithRef = newPostCategories.map(mapCategoryToCategoryWithRef);
 
-		const newPostTitle = await generateTitle(newPostCategoriesNames);
+		const newPostTitle = await generateTitle(newPostCategoriesNames, lastTitles);
 		const newPostContent = await generateContent(newPostTitle, newPostCategoriesNames);
 		const newPostImageUrl = await generateImage(newPostTitle);
 		const newPostPreview = await generatePostPreview(newPostTitle, newPostContent);

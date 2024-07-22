@@ -7,15 +7,15 @@ import { type SanityDocumentLike } from "sanity";
 import { sanityClient } from "@/lib/sanity.client";
 import { slugify } from "@/utils/slugify";
 import { createBlockContent } from "@/utils/createBlockContent";
-import { getAuthors, getCategories, uploadImage } from "@/api/actions";
+import { getAuthors, uploadImage } from "@/api/actions";
 import { generatePostContent } from "@/api/services/generatePostContent";
 
 export async function createPost() {
 	try {
-		const [categories, authors] = await Promise.all([getCategories(), getAuthors()]);
+		const authors = await getAuthors();
 
-		if (!categories.length || !authors.length) {
-			throw new Error("No authors or categories found");
+		if (!authors.length) {
+			throw new Error("No authors found");
 		}
 
 		const {
@@ -25,16 +25,14 @@ export async function createPost() {
 			newPostCategoriesWithRef,
 			newPostPreview,
 		} = await generatePostContent();
+
 		const uniqueSlug = slugify(newPostTitle);
-		console.log("Generated Slug:", uniqueSlug);
 
 		const imageAsset = await uploadImage(newPostImageUrl);
 
 		if (!imageAsset || !imageAsset.document) {
 			throw new Error("Image upload failed");
 		}
-
-		console.log("Uploaded Image Asset:", imageAsset);
 
 		const contentBlock = createBlockContent(`<html>${newPostContent}</html>`);
 
@@ -67,8 +65,6 @@ export async function createPost() {
 			visitors: 0,
 		};
 
-		console.log("Created Post:", JSON.stringify(newPost, null, 2));
-
 		const result = await sanityClient.create(newPost);
 		return result;
 	} catch (error) {
@@ -76,5 +72,3 @@ export async function createPost() {
 		throw error;
 	}
 }
-
-void createPost();
