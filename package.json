@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@mailerlite/mailerlite-nodejs": "^1.2.2",
 		"@sanity/image-url": "^1.0.2",
+		"@sanity/vision": "^3.52.0",
 		"axios": "^1.7.2",
 		"framer-motion": "^11.3.2",
 		"next": "14.2.5",
