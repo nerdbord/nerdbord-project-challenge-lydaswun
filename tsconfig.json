@@ -40,7 +40,8 @@
 		"src/api/actions/uploadImage.mts",
 		"src/api/services/generatePostContent.ts",
 		"src/utils/slugify.ts",
-		"src/lib/sanity.client.ts"
+		"src/lib/sanity.client.ts",
+		"src/app/api/createPost/cron.js"
 	],
 	"exclude": ["node_modules"]
 }
