@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { SinglePost } from "@/components/SinglePost/SinglePost";
 import { countPostVisitors, getPostBySlug } from "@/api/actions";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
 	title: "Post Title",
 	description: "Post Description",
 };
