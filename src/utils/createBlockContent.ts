@@ -7,9 +7,24 @@ import { htmlToBlocks } from "@sanity/block-tools";
 import { JSDOM } from "jsdom";
 import { type FieldDefinition } from "sanity";
 import { Schema } from "@sanity/schema";
-import { schemaTypes } from "../../sanity/schemaTypes";
 
-const defaultSchema = Schema.compile({ types: schemaTypes });
+const defaultSchema = Schema.compile({
+	name: "myBlog",
+	types: [
+		{
+			name: "post",
+			type: "document",
+			fields: [
+				{
+					name: "content",
+					type: "array",
+					title: "Full content of the post",
+					of: [{ type: "block" }],
+				},
+			],
+		},
+	],
+});
 
 const blockContentSchema = defaultSchema
 	.get("post")

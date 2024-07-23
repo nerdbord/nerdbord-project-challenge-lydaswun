@@ -24,7 +24,6 @@ export const generateGPTImage = async (prompt: string) => {
 		},
 	);
 
-	console.log("GPT Image API response:", JSON.stringify(response.data, null, 2));
 	const imageUrl = response.data.data[0].url;
 	return imageUrl;
 };

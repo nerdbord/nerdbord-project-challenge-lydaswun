@@ -50,7 +50,6 @@ export const generateGPTContent = async (prompt: string) => {
 	);
 
 	const { choices } = response.data;
-	console.log("GPT Title API response:", choices[0]?.message?.content);
 
 	return choices[0]?.message?.content?.trim();
 };
