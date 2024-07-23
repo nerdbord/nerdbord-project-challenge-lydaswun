@@ -38,11 +38,11 @@ export const SortPosts: React.FC<SortPostsProps> = ({ posts, setSortedPosts }) =
 	return (
 		<div className={styles.wrapper}>
 			<label htmlFor="sort" className={styles.label}>
-				Sort by:
+				Sortuj:
 			</label>
 			<select id="sort" value={sortType} onChange={handleSortChange} className={styles.sort}>
-				<option value="date">Publication Date</option>
-				<option value="likes">Likes</option>
+				<option value="date">Od najświeższego</option>
+				<option value="likes">Najwięcej lajków</option>
 			</select>
 		</div>
 	);

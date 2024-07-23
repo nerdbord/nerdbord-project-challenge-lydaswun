@@ -40,7 +40,7 @@ export const Header = () => {
 		<header className={styles.header}>
 			<div className={styles.logobox}>
 				<Logo />
-				TechBlog
+				SkurVival
 			</div>
 			{isHomePage ? (
 				<>
@@ -50,14 +50,14 @@ export const Header = () => {
 								Home
 							</a>
 							<a href="#popular" onClick={(event) => scrollToSection(event, "popular")}>
-								Popular
+								Najwięcej lajków
 							</a>
 							<a href="#allposts" onClick={(event) => scrollToSection(event, "allposts")}>
-								All Posts
+								Wszystkie posty
 							</a>
 						</div>
 
-						<Button text="Subscribe" onClick={openModal} variant="secondary" />
+						<Button text="Subskrybuj" onClick={openModal} variant="secondary" />
 					</nav>
 					<div className={styles.hamburger} onClick={toggleMenu}>
 						{isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -66,9 +66,9 @@ export const Header = () => {
 			) : (
 				<nav className={styles.postnav}>
 					<a href="/">
-						<FaArrowLeft /> Back to main
+						<FaArrowLeft /> Powrót na główną
 					</a>
-					<Button text="Subscribe" onClick={openModal} variant="secondary" />
+					<Button text="Subskrybuj" onClick={openModal} variant="secondary" />
 				</nav>
 			)}
 

@@ -25,7 +25,7 @@ export const Popular: React.FC<PopularPostType> = ({
 	return (
 		<>
 			{" "}
-			<p className={styles.section}>Most popular post</p>
+			<p className={styles.section}>Trendujący post</p>
 			<div id="popular" className={styles.wrapper}>
 				<Link href={`/post/${slug}`}>
 					<Image
@@ -45,7 +45,7 @@ export const Popular: React.FC<PopularPostType> = ({
 
 						<ul className={styles.postdata}>
 							<li className={styles.item}>
-								<p>Category</p>
+								<p>Kategoria</p>
 								{categories?.length > 0 && (
 									<div className={styles.categories}>
 										{categories.map((category) => (
@@ -57,11 +57,11 @@ export const Popular: React.FC<PopularPostType> = ({
 								)}
 							</li>
 							<li className={styles.item}>
-								<p>Publication Date</p>
+								<p>Data publikacji</p>
 								<p className={styles.subtitle}>{popularPostPublishedAt}</p>
 							</li>
 							<li className={styles.item}>
-								<p>Author</p>
+								<p>Autor</p>
 								<p className={styles.subtitle}>{author.name}</p>
 							</li>
 						</ul>

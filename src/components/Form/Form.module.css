@@ -4,6 +4,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 2rem;
+	padding: 1rem;
 }
 
 .title {
@@ -50,4 +51,33 @@
 .thankYou h1,
 .thankYou h2 {
 	text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		padding: 2rem;
+	}
+	.title {
+		font-size: 1.2rem;
+	}
+	.info {
+		font-size: 1rem;
+	}
+
+	.form {
+		flex-direction: column;
+	}
+	.form input {
+		width: 100%;
+	}
+	.error {
+		top: 215px;
+		left: 0;
+	}
+	.thankYou h1 {
+		font-size: 1.5rem;
+	}
+	.thankYou h2 {
+		font-size: 1rem;
+	}
 }

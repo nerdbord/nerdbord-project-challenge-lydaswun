@@ -34,7 +34,7 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 					<h1 className={styles.title}>{title}</h1>
 					<ul className={styles.postdata}>
 						<li className={styles.item}>
-							<p>Category</p>
+							<p>Kategoria</p>
 							{categories?.length > 0 && (
 								<div className={styles.categories}>
 									{categories.map((category) => (
@@ -46,11 +46,11 @@ export const SinglePost: React.FC<PostDetailProps> = ({ post }) => {
 							)}
 						</li>
 						<li className={styles.item}>
-							<p>Publication Date</p>
+							<p>Data publikacji</p>
 							<p className={styles.subtitle}>{postPublishedAt}</p>
 						</li>
 						<li className={styles.item}>
-							<p>Author</p>
+							<p>Autor</p>
 							<p className={styles.subtitle}>{author.name}</p>
 						</li>
 					</ul>
