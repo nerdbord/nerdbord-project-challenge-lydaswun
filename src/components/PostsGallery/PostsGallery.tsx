@@ -36,9 +36,9 @@ export const PostGallery: React.FC<PostGalleryProps> = ({ posts, postsPerPage = 
 	return (
 		<>
 			{" "}
-			<p className={styles.section}>All post</p>
+			<p className={styles.section}>Wszystkie posty</p>
 			{!sortedPosts.length ? (
-				<h2 className={styles.empty}>No posts to display!</h2>
+				<h2 className={styles.empty}>Nie ma ani jednego posta!</h2>
 			) : (
 				<div id="allposts" className={styles.wrapper}>
 					<SortPosts posts={posts} setSortedPosts={setSortedPosts} />
