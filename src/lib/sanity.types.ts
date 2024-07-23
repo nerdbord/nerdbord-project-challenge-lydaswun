@@ -22,6 +22,7 @@ export type PostDetailedType = PostCardType & {
 	author: AuthorType;
 	publishedAt: Date;
 	content: PortableTextBlock[];
+	preview: string;
 };
 
 export type AuthorType = {

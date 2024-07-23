@@ -22,7 +22,7 @@ export async function generateMetadata({
 
 	return {
 		title: post.title || "Post Title",
-		//description: post.preview || "Post Description",
+		description: post.preview || "Post Description",
 	};
 }
 
