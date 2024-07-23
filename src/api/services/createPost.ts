@@ -7,7 +7,7 @@ import { type SanityDocumentLike } from "sanity";
 import { sanityClient } from "@/lib/sanity.client";
 import { slugify } from "@/utils/slugify";
 import { createBlockContent } from "@/utils/createBlockContent";
-import { getAuthors, uploadImage } from "@/api/actions";
+import { getAuthors } from "@/api/actions";
 import { generatePostContent } from "@/api/services/generatePostContent";
 
 export async function createPost() {
@@ -28,11 +28,8 @@ export async function createPost() {
 
 		const uniqueSlug = slugify(newPostTitle);
 
-		const imageAsset = await uploadImage(newPostImageUrl);
-
-		if (!imageAsset || !imageAsset.document) {
-			throw new Error("Image upload failed");
-		}
+		const imageBuffer = await fetch(newPostImageUrl).then((res) => res.arrayBuffer());
+		const imageAsset = await sanityClient.assets.upload("image", Buffer.from(imageBuffer));
 
 		const contentBlock = createBlockContent(`<html>${newPostContent}</html>`);
 
@@ -52,7 +49,7 @@ export async function createPost() {
 				_type: "image",
 				asset: {
 					_type: "reference",
-					_ref: imageAsset.document._id,
+					_ref: imageAsset._id,
 				},
 				alt: "Post Image",
 			},
