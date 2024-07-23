@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createPost } from "@/api/services/createPost";
 
+export const maxDuration = 30;
+
 export async function POST() {
 	try {
 		const result = await createPost();
