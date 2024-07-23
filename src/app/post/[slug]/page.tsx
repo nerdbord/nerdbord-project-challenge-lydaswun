@@ -4,11 +4,6 @@ import styles from "./page.module.css";
 import { SinglePost } from "@/components/SinglePost/SinglePost";
 import { countPostVisitors, getPostBySlug } from "@/api/actions";
 
-const metadata: Metadata = {
-	title: "Post Title",
-	description: "Post Description",
-};
-
 export async function generateMetadata({
 	params,
 }: {
