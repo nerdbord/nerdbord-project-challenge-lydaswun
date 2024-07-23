@@ -3,7 +3,7 @@ import { createPost } from "@/api/services/createPost";
 
 export const maxDuration = 300;
 
-export async function POST() {
+export async function GET() {
 	try {
 		const result = await createPost();
 
