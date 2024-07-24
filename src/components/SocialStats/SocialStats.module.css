@@ -2,3 +2,16 @@
 	display: flex;
 	gap: 1rem;
 }
+
+.likeButton svg {
+	fill: transparent;
+	transition: fill 0.3s ease;
+}
+
+.likeButton:hover svg {
+	fill: #ff5500;
+}
+
+.likeButton:hover svg path {
+	stroke: transparent;
+}

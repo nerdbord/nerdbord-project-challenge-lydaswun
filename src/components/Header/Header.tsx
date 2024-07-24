@@ -57,7 +57,7 @@ export const Header = () => {
 							</a>
 						</div>
 
-						<Button text="Subskrybuj" onClick={openModal} variant="secondary" />
+						<Button text="Bądź na bieżąco z bajzlem" onClick={openModal} variant="secondary" />
 					</nav>
 					<div className={styles.hamburger} onClick={toggleMenu}>
 						{isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -68,7 +68,7 @@ export const Header = () => {
 					<a href="/">
 						<FaArrowLeft /> Powrót na główną
 					</a>
-					<Button text="Subskrybuj" onClick={openModal} variant="secondary" />
+					<Button text="Bądź na bieżąco z bajzlem" onClick={openModal} variant="secondary" />
 				</nav>
 			)}
 

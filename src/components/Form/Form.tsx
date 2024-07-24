@@ -20,7 +20,7 @@ export const Form = () => {
 		e.preventDefault();
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(email)) {
-			setError("Please enter a valid email address.");
+			setError("To nie wygląda jak email... Spróbuj jeszcze raz!");
 			setTimeout(() => {
 				setError("");
 			}, 3000);
@@ -50,10 +50,10 @@ export const Form = () => {
 					transition={{ duration: 0.5 }}
 				>
 					<h2>
-						You have successfully signed up
-						<br /> for our newsletter 🥳 <br />
+						Gratulacje, właśnie dołączyłeś
+						<br /> do naszej ekipy! 🥳 <br />
 					</h2>
-					<h1>💜 Thank you! 💜</h1>
+					<h1>💜 Dzięki! 💜</h1>
 				</motion.div>
 			</div>
 		);
@@ -61,7 +61,7 @@ export const Form = () => {
 
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.title}>Stay Updated!</div>
+			<div className={styles.title}>Nie przegap!</div>
 			<form className={styles.form} onSubmit={handleSubscribe}>
 				<input
 					id="email"
@@ -72,12 +72,16 @@ export const Form = () => {
 					className={error ? styles.inputError : ""}
 					formNoValidate={true}
 				/>
-				<Button variant="secondary" text="Subscribe" type="submit" />
+				<Button variant="secondary" text="Dołącz" type="submit" />
 			</form>
 			{error && <p className={styles.error}>{error}</p>}
 			<p className={styles.info}>
-				We promise no spam – just the good stuff,
-				<br /> because nobody likes a junk-filled inbox!
+				Obiecujemy zero spamu – tylko najlepsze treści,
+				<br /> bo nikt nie lubi skrzynki pełnej śmieci!
+				<br />
+				<br />
+				Psss! Co drugi dzień wjeżdża nowy post,
+				<br /> bo ktoś musi Ci przypominać, jak przetrwać w tym cyrku.
 			</p>
 		</div>
 	);

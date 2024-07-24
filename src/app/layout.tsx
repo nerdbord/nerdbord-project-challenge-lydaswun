@@ -7,10 +7,9 @@ import { Header } from "@/components/Header/Header";
 const font = Kumbh_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title:
-		"TechBlog - Your Gateway to Technology, AI, Business, Sport, Travel, Culture, and Innovation",
+	title: "SkurVival - jak przetrwać w Polsce!",
 	description:
-		"Dive into the world of technology, AI, business insights, sports updates, travel guides, cultural highlights, and groundbreaking innovations. Tech Explorer is your ultimate blog for staying updated with the latest trends and developments across these diverse fields, offering in-depth articles, expert opinions, and comprehensive guides to fuel your curiosity and knowledge.",
+		"Nie pierdolimy się w tańcu! Świeże newsy, najważniejsze wydarzenia i najnowsze trendy. Zobacz, jak radzić sobie w tym popierdolonym świecie. Przetrwanie to nasza specjalność!",
 	metadataBase: new URL("https://nerdbord-project-challenge-lydaswun.vercel.app/"), //change the url to domain after upload
 	alternates: {
 		canonical: "/",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 		},
 	},
 	openGraph: {
-		images: "/ogpengraph-image.png",
+		images: "/opengraph-image.png",
 	},
 };
 
@@ -29,7 +28,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={font.className}>
+		<html lang="pl" className={font.className}>
 			<body>
 				<Header />
 				{children}

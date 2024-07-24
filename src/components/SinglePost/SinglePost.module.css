@@ -70,7 +70,7 @@
 }
 
 .postContent {
-	@apply prose prose-lg prose-invert mx-auto max-w-[1200px];
+	@apply prose prose-lg prose-invert mx-auto max-w-[1200px] lg:px-16;
 }
 
 @media (max-width: 576px) {

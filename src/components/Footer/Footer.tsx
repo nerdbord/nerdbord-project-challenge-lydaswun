@@ -33,7 +33,7 @@ export const Footer = () => {
 					<FaFacebook />
 				</div>
 				<Button
-					text="Subskrybuj"
+					text="Bądź na bieżąco z bajzlem"
 					onClick={openModal}
 					variant="primary"
 					icon={Arrow}
