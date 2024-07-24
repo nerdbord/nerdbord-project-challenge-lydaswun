@@ -11,18 +11,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const post = await getPostBySlug(params.slug);
 
-	if (!post) {
-		return {
-			title:
-				"TechBlog - Your Gateway to Technology, AI, Business, Sport, Travel, Culture, and Innovation",
-			description:
-				"Dive into the world of technology, AI, business insights, sports updates, travel guides, cultural highlights, and groundbreaking innovations. Tech Explorer is your ultimate blog for staying updated with the latest trends and developments across these diverse fields, offering in-depth articles, expert opinions, and comprehensive guides to fuel your curiosity and knowledge.",
-		};
-	}
-
 	return {
-		title: post.title || "Post Title",
-		description: post.preview || "Post Description",
+		title: post?.title || "Post Title",
+		description: post?.preview || "Post Description",
 	};
 }
 
