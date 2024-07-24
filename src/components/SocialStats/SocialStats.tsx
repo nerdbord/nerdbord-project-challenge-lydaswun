@@ -5,9 +5,9 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import styles from "./SocialStats.module.css";
 import { addLike } from "@/api/actions";
-import Arrow from "@/assets/Arrow";
 import { Button } from "@/components/Atoms/Button/Button";
 import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
+import { Heart } from "@/assets/Heart";
 
 type SocialStatsProps = {
 	likes: number;
@@ -36,8 +36,9 @@ export const SocialStats = ({ likes, visitors, postId }: SocialStatsProps) => {
 				text="Like"
 				onClick={handleLike}
 				variant="primary"
-				icon={Arrow}
+				icon={Heart}
 				iconPosition="right"
+				className={styles.likeButton}
 			/>
 		</>
 	);
