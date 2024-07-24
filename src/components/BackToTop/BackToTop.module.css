@@ -16,7 +16,8 @@
 }
 
 .button {
-	padding: 1rem;
+	width: 66px;
+	height: 66px;
 	background-color: #ffd11a;
 	color: #2a2a2a;
 	border: none;
