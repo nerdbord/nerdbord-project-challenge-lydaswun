@@ -1,13 +1,14 @@
 ﻿"use client";
 
-import { useOptimistic, useTransition } from "react";
+import { useOptimistic, useState, useTransition } from "react";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import styles from "./SocialStats.module.css";
-import { addLike } from "@/api/actions";
+import { unLike } from "@/api/actions";
 import { Button } from "@/components/Atoms/Button/Button";
 import { StatsDisplay } from "@/components/Atoms/Stats/Stats";
 import { Heart } from "@/assets/Heart";
+import { addLike } from "@/app/actions/addLike";
 
 type SocialStatsProps = {
 	likes: number;
@@ -17,13 +18,41 @@ type SocialStatsProps = {
 
 export const SocialStats = ({ likes, visitors, postId }: SocialStatsProps) => {
 	const [optimisticLikes, setOptimisticLikes] = useOptimistic(likes);
+
+	console.log("optimisticLikes", optimisticLikes);
 	const [_isPending, startTransition] = useTransition();
+	const [isLiked, setIsLiked] = useState(false);
+
+	// const handleLike = async () => {
+	// 	if (isLiked) {
+	// 		setIsLiked(false);
+	// 		startTransition(async () => {
+	// 			setOptimisticLikes(optimisticLikes - 1);
+	// 		});
+	// 		await unLike(postId);
+	// 	} else {
+	// 		setIsLiked(true);
+	// 		startTransition(async () => {
+	// 			setOptimisticLikes(optimisticLikes + 1);
+	// 		});
+	// 		await addLike(postId);
+	// 	}
+	// };
 
 	const handleLike = async () => {
+		setIsLiked(true);
 		startTransition(() => {
 			setOptimisticLikes(optimisticLikes + 1);
 		});
-		await addLike(postId);
+		await addLike(postId, optimisticLikes + 1);
+	};
+
+	const handleUnlike = async () => {
+		setIsLiked(false);
+		startTransition(() => {
+			setOptimisticLikes(-1);
+		});
+		await unLike(postId);
 	};
 
 	return (
@@ -33,8 +62,8 @@ export const SocialStats = ({ likes, visitors, postId }: SocialStatsProps) => {
 				<StatsDisplay count={visitors} icon={IoEyeOutline} label={""} />
 			</div>
 			<Button
-				text="Like"
-				onClick={handleLike}
+				text={isLiked ? "Unlike" : "Like"}
+				onClick={isLiked ? handleUnlike : handleLike}
 				variant="primary"
 				icon={Heart}
 				iconPosition="right"

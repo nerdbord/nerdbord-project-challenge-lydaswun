@@ -1,10 +1,10 @@
 ﻿"use server";
 
-import { revalidatePath } from "next/cache";
-import { sanityClient } from "@/lib/sanity.client";
+import { revalidateTag } from "next/cache";
+import { increasePostVisitors } from "@/api/services/social.service";
 
 export const countPostVisitors = async (postId: string) => {
-	await sanityClient.patch(postId).setIfMissing({ visitors: 0 }).inc({ visitors: 1 }).commit();
+	return increasePostVisitors(postId);
 
-	revalidatePath("/", "layout");
+	revalidateTag("visitor");
 };
